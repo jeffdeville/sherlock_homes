@@ -1,11 +1,16 @@
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
-
+require 'dotenv'
 require 'rspec/given'
 require 'webmock/rspec'
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'sherlock_homes'
+
+Dotenv.load('.env.test')
+
+if ENV['CODECLIMATE_REPO_TOKEN']
+  require 'codeclimate-test-reporter'
+  CodeClimate::TestReporter.start
+end
 
 support_files = Dir[File.join(
   File.expand_path('../../spec/support/**/*.rb', __FILE__)
@@ -13,7 +18,6 @@ support_files = Dir[File.join(
 support_files.each { |f| require f }
 
 RSpec.configure do |config|
-  config.treat_symbols_as_metadata_keys_with_true_values = true
   config.run_all_when_everything_filtered = true
   config.filter_run :focus
   config.order = :random
