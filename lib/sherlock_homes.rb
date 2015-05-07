@@ -1,4 +1,5 @@
 require "sherlock_homes/version"
+require 'sherlock_homes/configuration'
 
 require 'geocoder'
 
