@@ -1,5 +1,5 @@
 /.bundle/
-/.env.test
+/.env
 /.yardoc
 /Gemfile.lock
 /_yardoc/

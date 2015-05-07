@@ -7,3 +7,6 @@ rvm:
 matrix:
   allow_failures:
     - rvm: ruby-head
+env:
+  global:
+    - ZILLOW_KEY=fake-zillow-key
