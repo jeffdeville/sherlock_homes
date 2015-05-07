@@ -1,0 +1,125 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://maps.googleapis.com/maps/api/geocode/json?address=2114%20Bigelow%20Ave,%20Seattle,%20WA&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Thu, 07 May 2015 09:44:24 GMT
+      Expires:
+      - Fri, 08 May 2015 09:44:24 GMT
+      Cache-Control:
+      - public, max-age=86400
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Alternate-Protocol:
+      - 80:quic,p=1
+      Accept-Ranges:
+      - none
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+           "results" : [
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "2114",
+                       "short_name" : "2114",
+                       "types" : [ "street_number" ]
+                    },
+                    {
+                       "long_name" : "Bigelow Avenue North",
+                       "short_name" : "Bigelow Ave N",
+                       "types" : [ "route" ]
+                    },
+                    {
+                       "long_name" : "East Queen Anne",
+                       "short_name" : "East Queen Anne",
+                       "types" : [ "neighborhood", "political" ]
+                    },
+                    {
+                       "long_name" : "Seattle",
+                       "short_name" : "Seattle",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "King County",
+                       "short_name" : "King County",
+                       "types" : [ "administrative_area_level_2", "political" ]
+                    },
+                    {
+                       "long_name" : "Washington",
+                       "short_name" : "WA",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "United States",
+                       "short_name" : "US",
+                       "types" : [ "country", "political" ]
+                    },
+                    {
+                       "long_name" : "98109",
+                       "short_name" : "98109",
+                       "types" : [ "postal_code" ]
+                    },
+                    {
+                       "long_name" : "2119",
+                       "short_name" : "2119",
+                       "types" : [ "postal_code_suffix" ]
+                    }
+                 ],
+                 "formatted_address" : "2114 Bigelow Avenue North, Seattle, WA 98109, USA",
+                 "geometry" : {
+                    "location" : {
+                       "lat" : 47.637923,
+                       "lng" : -122.3481375
+                    },
+                    "location_type" : "ROOFTOP",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 47.6392719802915,
+                          "lng" : -122.3467885197085
+                       },
+                       "southwest" : {
+                          "lat" : 47.6365740197085,
+                          "lng" : -122.3494864802915
+                       }
+                    }
+                 },
+                 "partial_match" : true,
+                 "place_id" : "ChIJD-HsHhEVkFQR8DJrk5l4wlw",
+                 "types" : [ "street_address" ]
+              }
+           ],
+           "status" : "OK"
+        }
+    http_version: 
+  recorded_at: Thu, 07 May 2015 09:44:24 GMT
+recorded_with: VCR 2.9.3

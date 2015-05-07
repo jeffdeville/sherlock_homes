@@ -1,0 +1,400 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://maps.googleapis.com/maps/api/geocode/json?address=C.I.A.%20general%20headquarters&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Thu, 07 May 2015 09:44:24 GMT
+      Expires:
+      - Fri, 08 May 2015 09:44:24 GMT
+      Cache-Control:
+      - public, max-age=86400
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Alternate-Protocol:
+      - 80:quic,p=1
+      Accept-Ranges:
+      - none
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+           "results" : [
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "General Office",
+                       "short_name" : "General Office",
+                       "types" : [ "premise" ]
+                    },
+                    {
+                       "long_name" : "Percy Evens Road",
+                       "short_name" : "Percy Evens Rd",
+                       "types" : [ "route" ]
+                    },
+                    {
+                       "long_name" : "Duliajan",
+                       "short_name" : "Duliajan",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "Dibrugarh",
+                       "short_name" : "Dibrugarh",
+                       "types" : [ "administrative_area_level_2", "political" ]
+                    },
+                    {
+                       "long_name" : "Assam",
+                       "short_name" : "AS",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "India",
+                       "short_name" : "IN",
+                       "types" : [ "country", "political" ]
+                    },
+                    {
+                       "long_name" : "786602",
+                       "short_name" : "786602",
+                       "types" : [ "postal_code" ]
+                    }
+                 ],
+                 "formatted_address" : "General Office, Percy Evens Road, Duliajan, Assam 786602, India",
+                 "geometry" : {
+                    "bounds" : {
+                       "northeast" : {
+                          "lat" : 27.355912,
+                          "lng" : 95.31642789999999
+                       },
+                       "southwest" : {
+                          "lat" : 27.3555524,
+                          "lng" : 95.3153014
+                       }
+                    },
+                    "location" : {
+                       "lat" : 27.3557322,
+                       "lng" : 95.3158646
+                    },
+                    "location_type" : "ROOFTOP",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 27.3570811802915,
+                          "lng" : 95.3172136302915
+                       },
+                       "southwest" : {
+                          "lat" : 27.3543832197085,
+                          "lng" : 95.31451566970848
+                       }
+                    }
+                 },
+                 "partial_match" : true,
+                 "place_id" : "ChIJZ_saXFNBPzcRYkosySdmoek",
+                 "types" : [ "premise" ]
+              },
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "General Office",
+                       "short_name" : "General Office",
+                       "types" : [ "premise" ]
+                    },
+                    {
+                       "long_name" : "General Office Road",
+                       "short_name" : "General Office Rd",
+                       "types" : [ "route" ]
+                    },
+                    {
+                       "long_name" : "Tata Motors",
+                       "short_name" : "Tata Motors",
+                       "types" : [ "sublocality_level_2", "sublocality", "political" ]
+                    },
+                    {
+                       "long_name" : "Telco Colony",
+                       "short_name" : "Telco Colony",
+                       "types" : [ "sublocality_level_1", "sublocality", "political" ]
+                    },
+                    {
+                       "long_name" : "Jamshedpur",
+                       "short_name" : "Jamshedpur",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "East Singhbhum",
+                       "short_name" : "East Singhbhum",
+                       "types" : [ "administrative_area_level_2", "political" ]
+                    },
+                    {
+                       "long_name" : "Jharkhand",
+                       "short_name" : "JH",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "India",
+                       "short_name" : "IN",
+                       "types" : [ "country", "political" ]
+                    },
+                    {
+                       "long_name" : "831010",
+                       "short_name" : "831010",
+                       "types" : [ "postal_code" ]
+                    }
+                 ],
+                 "formatted_address" : "General Office, General Office Road, Tata Motors, Telco Colony, Jamshedpur, Jharkhand 831010, India",
+                 "geometry" : {
+                    "bounds" : {
+                       "northeast" : {
+                          "lat" : 22.7690688,
+                          "lng" : 86.23969319999999
+                       },
+                       "southwest" : {
+                          "lat" : 22.7684999,
+                          "lng" : 86.23885899999999
+                       }
+                    },
+                    "location" : {
+                       "lat" : 22.7687843,
+                       "lng" : 86.2392761
+                    },
+                    "location_type" : "ROOFTOP",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 22.7701333302915,
+                          "lng" : 86.24062508029149
+                       },
+                       "southwest" : {
+                          "lat" : 22.7674353697085,
+                          "lng" : 86.23792711970849
+                       }
+                    }
+                 },
+                 "partial_match" : true,
+                 "place_id" : "ChIJUXHA-rTi9TkRGTEMLaWCLfo",
+                 "types" : [ "premise" ]
+              },
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "General Building",
+                       "short_name" : "General Building",
+                       "types" : [ "point_of_interest", "establishment" ]
+                    },
+                    {
+                       "long_name" : "55",
+                       "short_name" : "55",
+                       "types" : [ "street_number" ]
+                    },
+                    {
+                       "long_name" : "Johnson Street",
+                       "short_name" : "Johnson St",
+                       "types" : [ "route" ]
+                    },
+                    {
+                       "long_name" : "Downtown Brooklyn",
+                       "short_name" : "Downtown Brooklyn",
+                       "types" : [ "neighborhood", "political" ]
+                    },
+                    {
+                       "long_name" : "Brooklyn",
+                       "short_name" : "Brooklyn",
+                       "types" : [ "sublocality_level_1", "sublocality", "political" ]
+                    },
+                    {
+                       "long_name" : "Kings County",
+                       "short_name" : "Kings County",
+                       "types" : [ "administrative_area_level_2", "political" ]
+                    },
+                    {
+                       "long_name" : "New York",
+                       "short_name" : "NY",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "United States",
+                       "short_name" : "US",
+                       "types" : [ "country", "political" ]
+                    },
+                    {
+                       "long_name" : "11201",
+                       "short_name" : "11201",
+                       "types" : [ "postal_code" ]
+                    }
+                 ],
+                 "formatted_address" : "General Building, 55 Johnson Street, Brooklyn, NY 11201, USA",
+                 "geometry" : {
+                    "location" : {
+                       "lat" : 40.69524639999999,
+                       "lng" : -73.9882875
+                    },
+                    "location_type" : "APPROXIMATE",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 40.6965953802915,
+                          "lng" : -73.98693851970849
+                       },
+                       "southwest" : {
+                          "lat" : 40.6938974197085,
+                          "lng" : -73.98963648029151
+                       }
+                    }
+                 },
+                 "partial_match" : true,
+                 "place_id" : "ChIJ7ddbIkpawokRFGGab-mucC8",
+                 "types" : [ "university", "point_of_interest", "establishment" ]
+              },
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "General Office Road",
+                       "short_name" : "General Office Rd",
+                       "types" : [ "route" ]
+                    },
+                    {
+                       "long_name" : "Port Kembla Steelworks",
+                       "short_name" : "Port Kembla Steelworks",
+                       "types" : [ "establishment" ]
+                    },
+                    {
+                       "long_name" : "Port Kembla",
+                       "short_name" : "Port Kembla",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "New South Wales",
+                       "short_name" : "NSW",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "Australia",
+                       "short_name" : "AU",
+                       "types" : [ "country", "political" ]
+                    },
+                    {
+                       "long_name" : "2505",
+                       "short_name" : "2505",
+                       "types" : [ "postal_code" ]
+                    }
+                 ],
+                 "formatted_address" : "Port Kembla Steelworks, General Office Road, Port Kembla NSW 2505, Australia",
+                 "geometry" : {
+                    "bounds" : {
+                       "northeast" : {
+                          "lat" : -34.4738434,
+                          "lng" : 150.8863541
+                       },
+                       "southwest" : {
+                          "lat" : -34.4753391,
+                          "lng" : 150.879034
+                       }
+                    },
+                    "location" : {
+                       "lat" : -34.4744384,
+                       "lng" : 150.8826256
+                    },
+                    "location_type" : "GEOMETRIC_CENTER",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : -34.4732422697085,
+                          "lng" : 150.8863541
+                       },
+                       "southwest" : {
+                          "lat" : -34.4759402302915,
+                          "lng" : 150.879034
+                       }
+                    }
+                 },
+                 "partial_match" : true,
+                 "place_id" : "ChIJyxrOt0EXE2sRfNIegHElIfY",
+                 "types" : [ "route" ]
+              },
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "General Offices",
+                       "short_name" : "General Offices",
+                       "types" : [ "premise" ]
+                    },
+                    {
+                       "long_name" : "Independence Avenue",
+                       "short_name" : "Independence Ave",
+                       "types" : [ "route" ]
+                    },
+                    {
+                       "long_name" : "Chingola Central",
+                       "short_name" : "Chingola Central",
+                       "types" : [ "sublocality_level_1", "sublocality", "political" ]
+                    },
+                    {
+                       "long_name" : "Chingola",
+                       "short_name" : "Chingola",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "Chingola",
+                       "short_name" : "Chingola",
+                       "types" : [ "administrative_area_level_2", "political" ]
+                    },
+                    {
+                       "long_name" : "Copperbelt",
+                       "short_name" : "Copperbelt",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "Zambia",
+                       "short_name" : "ZM",
+                       "types" : [ "country", "political" ]
+                    }
+                 ],
+                 "formatted_address" : "General Offices, Independence Avenue, Chingola, Zambia",
+                 "geometry" : {
+                    "location" : {
+                       "lat" : -12.5316962,
+                       "lng" : 27.8610814
+                    },
+                    "location_type" : "ROOFTOP",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : -12.5303472197085,
+                          "lng" : 27.8624303802915
+                       },
+                       "southwest" : {
+                          "lat" : -12.5330451802915,
+                          "lng" : 27.8597324197085
+                       }
+                    }
+                 },
+                 "partial_match" : true,
+                 "place_id" : "ChIJoWHrsJCobRkRvTfo0ECaMpU",
+                 "types" : [ "premise" ]
+              }
+           ],
+           "status" : "OK"
+        }
+    http_version: 
+  recorded_at: Thu, 07 May 2015 09:44:24 GMT
+recorded_with: VCR 2.9.3
