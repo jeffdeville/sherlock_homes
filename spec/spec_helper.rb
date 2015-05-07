@@ -1,11 +1,12 @@
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+
 require 'dotenv'
 require 'rspec/given'
 require 'webmock/rspec'
 
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'sherlock_homes'
+Dotenv.load('.env')
 
-Dotenv.load('.env.test')
+require 'sherlock_homes'
 
 if ENV['CODECLIMATE_REPO_TOKEN']
   require 'codeclimate-test-reporter'
