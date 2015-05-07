@@ -1,5 +1,7 @@
 require "sherlock_homes/version"
 
+require 'geocoder'
+
 module SherlockHomes
-  # Your code goes here...
+  autoload 'Locator', 'sherlock_homes/locator'
 end
