@@ -1,4 +1,3 @@
-require 'codeclimate-test-reporter'
 require 'dotenv'
 require 'rspec/given'
 require 'webmock/rspec'
@@ -9,6 +8,7 @@ require 'sherlock_homes'
 Dotenv.load('.env.test')
 
 if ENV['CODECLIMATE_REPO_TOKEN']
+  require 'codeclimate-test-reporter'
   CodeClimate::TestReporter.start
 end
 
