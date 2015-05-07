@@ -15,8 +15,8 @@ module SherlockHomes
   class Configuration
     attr_accessor :zillow_key
 
-    def zillow_key
-      @zillow_key || ENV["ZILLOW_KEY"]
+    def initialize
+      @zillow_key = ENV["ZILLOW_KEY"]
     end
   end
 
