@@ -32,4 +32,31 @@ describe SherlockHomes::PropertyFinder, :vcr do
     end
   end
 
+  describe '#get_comps' do
+    Given(:zpid) { 48749425 }
+    Given(:count) { 2 }
+    When(:comps) { subject.get_comps(zpid: zpid, count: count) }
+
+    context 'when comps exist for that property' do
+      Then { comps.principal.zpid.to_i.eql?(zpid) }
+      Then { comps.comparables.keys.count.eql?(2) }
+      Then { not comps.comparables.values.first.zpid.nil? }
+    end
+
+    context 'when no property exists for the given zpid' do
+      Given(:zpid) { 99999999 }
+      Then { expect(comps).to have_failed(SherlockHomes::NoPropertyError) }
+    end
+
+    context 'when no zpid is provided' do
+      Given(:zpid) { nil }
+      Then { expect(comps).to have_failed(ArgumentError) }
+    end
+
+    context 'when no count is provided' do
+      Given(:count) { nil }
+      Then { expect(comps).to have_failed(ArgumentError) }
+    end
+  end
+
 end
