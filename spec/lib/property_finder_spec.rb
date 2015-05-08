@@ -34,12 +34,12 @@ describe SherlockHomes::PropertyFinder, :vcr do
 
   describe '#get_comps' do
     Given(:zpid) { 48749425 }
-    Given(:count) { 2 }
+    Given(:count) { 10 }
     When(:comps) { subject.get_comps(zpid: zpid, count: count) }
 
     context 'when comps exist for that property' do
       Then { comps.principal.zpid.to_i.eql?(zpid) }
-      Then { comps.comparables.keys.count.eql?(2) }
+      Then { comps.comparables.keys.count <= count }
       Then { not comps.comparables.values.first.zpid.nil? }
     end
 
