@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.zillow.com/webservice/GetDeepComps.htm?count=20&rentzestimate=false&zpid=99999999
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 08 May 2015 11:15:03 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Cache-Control:
+      - no-cache
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Internal-Host:
+      - '002'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '678'
+      Set-Cookie:
+      - F5P=1897973770.0.0000; path=/
+      - JSESSIONID=A7665319E635781556AABB57BF775F71; Path=/; HttpOnly
+      - JSESSIONID=A7665319E635781556AABB57BF775F71; Path=/; HttpOnly
+      - zguid=22|%5B%22c03b7da5-586a-4101-b753-baec2c0c8ef2%22%2C%22000000%22%2C%22%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%5Cu0000%22%2C%22false%40false%40false%40false%400%400%400%400%400%400%22%2C%220%22%2C%220%22%2C%220%22%2C%2210%22%2C%220%22%2C%220%400%400%400%400%400%22%2C%22%22%5D;
+        Domain=.zillow.com; Expires=Wed, 07-May-2025 23:15:04 GMT; Path=/
+      Via:
+      - 1.1 www.zillow.com
+      Vary:
+      - User-Agent
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" encoding="utf-8"?><Comps:comps xsi:schemaLocation="http://www.zillow.com/static/xsd/Comps.xsd
+        http://www.zillowstatic.com/vstatic/7b712f4/static/xsd/Comps.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:Comps="http://www.zillow.com/static/xsd/Comps.xsd"><request><zpid>99999999</zpid><count>20</count></request><message><text>Error:
+        invalid or missing ZWSID parameter</text><code>2</code></message></Comps:comps><!--
+        H:002  T:1ms  S:130  R:Fri May 08 04:15:04 PDT 2015  B:4.0.15316-release_20150506-quelea.3a71e50-CANDIDATE-040fc91-20150504.232930.3a71e50141702bbc82f14b5302e2b9a06fa41a63.20150505142027508-origin/release/20150506-quelea
+        -->'
+    http_version: 
+  recorded_at: Fri, 08 May 2015 11:15:05 GMT
+recorded_with: VCR 2.9.3
