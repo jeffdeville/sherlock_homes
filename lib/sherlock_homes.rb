@@ -16,5 +16,6 @@ module SherlockHomes
 
   autoload 'Configuration', 'sherlock_homes/configuration'
   autoload 'Locator', 'sherlock_homes/locator'
+  autoload 'Scraper', 'sherlock_homes/scraper'
   autoload 'PropertyFinder', 'sherlock_homes/property_finder'
 end
