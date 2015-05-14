@@ -1,7 +1,8 @@
-require "sherlock_homes/version"
+require 'sherlock_homes/version'
 
 require 'geocoder'
 require 'rubillow'
+require 'yasf'
 
 module SherlockHomes
 
