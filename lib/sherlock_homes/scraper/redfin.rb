@@ -38,7 +38,7 @@ module SherlockHomes::Scraper
     property :walk_score, css: '#redfin_search_details_neighborhood_NeighborhoodStatsPanel_0 > div.main-content > div:nth-child(3) > div > div > div.viz-container > div > div.content > div.percentage'
 
     property :chart, css: '#redfin_search_details_neighborhood_NeighborhoodStatsChart_0 > div > img' do |node|
-      "https://www.redfin.com/#{node.attribute('src')}"
+      "https://www.redfin.com/#{node.attribute('src')}" if node.respond_to?(:attribute)
     end
 
     private
