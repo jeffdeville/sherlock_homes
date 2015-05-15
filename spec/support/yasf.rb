@@ -3,8 +3,8 @@ RSpec.configure do |config|
     Yasf.configure do |config|
       #config.proxy_port = '2424'
       #config.proxy_host = '127.0.0.1'
-      config.timeout = 60
-      config.debug = true
+      config.timeout = 100
+      config.debug = false
     end
   end
 end
