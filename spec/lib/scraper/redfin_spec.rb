@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe SherlockHomes::Scraper::Redfin do
+RSpec.describe SherlockHomes::Scraper::Redfin, sauce: true do
 
   Given(:scraper) do
     subject.base_url 'https://www.redfin.com/PA/Allentown/2354-S-Cedar-Crest-Blvd-18103/home/59034427'
