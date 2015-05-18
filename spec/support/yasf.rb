@@ -7,5 +7,6 @@ RSpec.configure do |config|
       config.debug = false
       config.capybara_driver = :sauce
     end
+    Capybara.default_wait_time = 20
   end
 end
