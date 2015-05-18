@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe SherlockHomes::Scraper::Trulia, sauce: true do
+RSpec.describe SherlockHomes::Trulia, sauce: true do
 
   Given(:scraper) do
     subject.base_url 'http://www.trulia.com/homes/Pennsylvania/Allentown/sold/1263178-2490-Riverbend-Rd-Allentown-PA-18103'

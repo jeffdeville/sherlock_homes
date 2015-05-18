@@ -1,5 +1,6 @@
-module SherlockHomes::Scraper
-  class Redfin < SherlockHomes::Scraper::Base
+module SherlockHomes
+  class Redfin
+    include Yasf::Crawler
 
     property :page_title, xpath: '/html/head/title'
 

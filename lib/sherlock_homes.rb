@@ -16,6 +16,7 @@ module SherlockHomes
 
   autoload 'Configuration', 'sherlock_homes/configuration'
   autoload 'Locator', 'sherlock_homes/locator'
-  autoload 'Scraper', 'sherlock_homes/scraper'
+  autoload 'Redfin', 'sherlock_homes/redfin'
+  autoload 'Trulia', 'sherlock_homes/trulia'
   autoload 'PropertyFinder', 'sherlock_homes/property_finder'
 end

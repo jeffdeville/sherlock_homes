@@ -1,5 +1,6 @@
-module SherlockHomes::Scraper
-  class Trulia < SherlockHomes::Scraper::Base
+module SherlockHomes
+  class Trulia
+    include Yasf::Crawler
 
     property :page_title, xpath: '/html/head/title'
 
