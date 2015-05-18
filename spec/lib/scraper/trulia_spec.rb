@@ -26,16 +26,13 @@ RSpec.describe SherlockHomes::Scraper::Trulia do
   And  { result.taxes_assessments[0][:assessment].include?('$238,700') }
 
   And  { result.price_history.is_a? Array }
-  And  { result.price_history[0][:date].eql?('05/06/2011') }
+  And  { result.price_history[0][:date].eql?('05/01/2015') }
   And  { result.price_history[0][:event].eql?('Sold') }
-  And  { result.price_history[0][:price].eql?('$265,000') }
+  And  { result.price_history[0][:price].eql?('$1,697') }
   And  { result.price_history[0][:source].eql?('Public records') }
   And  { result.price_history[0][:detail].is_a? Hash }
-  And  { result.price_history[0][:detail]["Recording Date"].eql?("05/06/2011") }
-  And  { result.price_history[0][:detail]["Sale Price"].eql?("$265,000") }
+  And  { result.price_history[0][:detail]["Recording Date"].eql?("05/01/2015") }
+  And  { result.price_history[0][:detail]["Sale Price"].eql?("$1,697") }
 
   And  { result.estimates.is_a? Array }
-  And  { result.estimates[0][:property_type].eql?('Single-Family Home') }
-  And  { result.estimates[0][:bed].eql?('6') }
-
 end
