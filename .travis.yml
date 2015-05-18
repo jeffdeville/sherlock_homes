@@ -10,3 +10,8 @@ matrix:
 env:
   global:
     - ZILLOW_KEY=fake-zillow-key
+addons:
+  sauce_connect:
+    username: "sherlock_homes"
+    access_key:
+      secure: "HvmsUWufR+nMtu6yVL614m9sIcliKxpeRptjrZPWekpaxDDq+xQjRAwwArhEfua2Cws2KKoQwSlTGoafCN0QQ9XrxIih91Ct6t+z22IJbOX2KoaIiCQI4+R2JUyClZ4aLTSMgRn0Zu+97tT7gU4MMj5fxsy7qC/2RWkihfNBEqo="
