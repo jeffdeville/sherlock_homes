@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SherlockHomes::PropertyFinder, :vcr do
+describe SherlockHomes::Zillow, :vcr do
 
   describe '#search' do
     When(:property) { subject.search(address: address, citystatezip: citystatezip) }

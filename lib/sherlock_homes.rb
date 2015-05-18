@@ -18,5 +18,5 @@ module SherlockHomes
   autoload 'Locator', 'sherlock_homes/locator'
   autoload 'Redfin', 'sherlock_homes/redfin'
   autoload 'Trulia', 'sherlock_homes/trulia'
-  autoload 'PropertyFinder', 'sherlock_homes/property_finder'
+  autoload 'Zillow', 'sherlock_homes/zillow'
 end

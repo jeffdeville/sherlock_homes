@@ -6,7 +6,7 @@ module SherlockHomes
   class NoEstimateError < RuntimeError; end
   class NoCompsError < RuntimeError; end
 
-  class PropertyFinder
+  class Zillow
 
     def initialize
       Rubillow.configure { |c| c.zwsid = SherlockHomes.configuration.zillow_key }
