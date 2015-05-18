@@ -1,14 +1,12 @@
 language: ruby
 rvm:
-- 2.0.0
-- 2.1
-- 2.2
-- ruby-head
+  - 2.0.0
+  - 2.1
+  - 2.2
+  - ruby-head
 matrix:
   allow_failures:
-  - rvm: ruby-head
+    - rvm: ruby-head
 env:
   global:
-  - ZILLOW_KEY=fake-zillow-key
-  - secure: RopdrQF/2Z5w6+h/87m7DJteKH73JNa0GsoaQFFZ/YLmDwY/vk+yx1M5ruAuAqpqgTn/d52bnxHy+C9gvuuQjTyMtqoC2pNP4CnK841MQ22n5fufDz3w2a6SAtpfT8AnkEo+cS4/KzSivUX/kM4ccJ1U42TkHFJH1//Z39mYALZRbwIbb79enHlH8AlYrNLx3g3C/oQX4WOm0+hkpZPZyXpeCa1CLmtOCu7AKq67jTi3NCUliZEt4h1jeVPdASd/xsgfkIpDTQ03zjo94Ce5LotRdWNhQtZ+pUjxNAASbLx7HAYoVvTjcrx/LRe18A1YGhaNU+nVVqM36Xtvus0WmskOLBx98TOrhSM1pZGgeBZNy3qt/5UOF/zcQt+tBt+zEPxd3yoG7U8cAUT102+35gthAj5JUV6/T4T/XO4xugu6e4N/ZdXtEN2u5DjJrXbzOO3Ndviy/uU/Jf8MrdESbxzfyOfBairb6Qz9eoT76eQ7/AYduELAaS/thDA3blstXw+kHQS39v3zCQ9zz6UfXHskQz1tM3nwuuvWjsQ4vmIDW7qhqPGwg3ebwmxGeIoyv2URS0KVoDpPMAnE86ac9Sf0BE74w9ccF66OPerv0ATDD3kp0Ub8lk7ojOlJJV8IdwXk+uwANwv1roAUSxUbGKgx8WXbWNivXnplfaIC3bU=
-  - secure: gD+Tkkr5XmGERZwku5Bc0dzZdFQr4+k3+8UcVmW5YtJtBWBAeo6/k89mYciW7uonSlo/sZSgS3pc3tylrwXboS9EcTDTVzvhsbg2P1zm6POs9bMLjYJBjKwRHAJI02+M0CJ/4o5bHLO56qybFOJMMbrqRzDq9a+x9jlLMPeQ+JXByFUg76cUQAOf7sBkOP9qyCRprgqJKm7I2bX4B74UBWN/3vMAxrKi5wylUVjNi377F8YPFaozCnVUDNN9x5U1b6Du/hjWnIrupuP5wQ2BLahs6Pz72LkU48aPLdejM+R9caD4IORL9HhaL89+GRmfSZ8wZki0ATsQWeQHSLPlJrvd6ORRpV8N2zHqKZTutHBC9dKq/ueOl4C+amBYN6I3cvxOL0GlczU/mHfm9dlBGGHXtTbVltvfE/8pb5EsLoy1aA/cXF1YbpvnnoDUNAstISN1N5T5q2fAYnH2dY51NEL1akEPyf9D2SBQFhXx/PvhDnJQSsdUo4w/1Oz7kFMcMkwp7QFhKtZC3eAtcwjzF1B75w9amrmOxwSTolDXO68VAdn+ASE6dmHhtLGayFmhysykBgwU/lMkdSuIxJGStJa6/zzQ+GTuehAvbKX3dF+Oi8jizvcxzyBmklns1S+/vTcoO5k8Jgm3MqncwBEzQuZSeqLmO3j9ptzpoVK4A5c=
+    - ZILLOW_KEY=fake-zillow-key
