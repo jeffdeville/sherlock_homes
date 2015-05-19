@@ -6,13 +6,13 @@ module SherlockHomes
   class NoEstimateError < RuntimeError; end
   class NoCompsError < RuntimeError; end
 
-  class PropertyFinder
+  class Zillow
 
     def initialize
       Rubillow.configure { |c| c.zwsid = SherlockHomes.configuration.zillow_key }
     end
 
-    def search(address: '', citystatezip: '')
+    def search(address, citystatezip)
       property = Rubillow::PropertyDetails.deep_search_results(address: address, citystatezip: citystatezip)
       error_code = property.code.to_i
       # For error_code meanings see http://www.zillow.com/howto/api/GetDeepSearchResults.htm
@@ -23,7 +23,7 @@ module SherlockHomes
       property
     end
 
-    def get_comps(zpid: '', count: 20)
+    def get_comps(zpid, count=20)
       comps = Rubillow::PropertyDetails.deep_comps(zpid: zpid, count: count)
       error_code = comps.code.to_i
       # For error_code meanings see http://www.zillow.com/howto/api/GetDeepComps.htm

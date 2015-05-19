@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe SherlockHomes::PropertyFinder, :vcr do
+describe SherlockHomes::Zillow, :vcr do
 
   describe '#search' do
-    When(:property) { subject.search(address: address, citystatezip: citystatezip) }
+    When(:property) { subject.search(address, citystatezip) }
 
     context 'when a property exists for that address' do
       Given(:address) { "2114 Bigelow Ave" }
@@ -35,7 +35,7 @@ describe SherlockHomes::PropertyFinder, :vcr do
   describe '#get_comps' do
     Given(:zpid) { 48749425 }
     Given(:count) { 10 }
-    When(:comps) { subject.get_comps(zpid: zpid, count: count) }
+    When(:comps) { subject.get_comps(zpid, count) }
 
     context 'when comps exist for that property' do
       Then { comps.principal.zpid.to_i.eql?(zpid) }

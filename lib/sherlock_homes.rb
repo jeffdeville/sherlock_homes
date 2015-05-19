@@ -1,7 +1,8 @@
-require "sherlock_homes/version"
+require 'sherlock_homes/version'
 
 require 'geocoder'
 require 'rubillow'
+require 'yasf'
 
 module SherlockHomes
 
@@ -15,5 +16,7 @@ module SherlockHomes
 
   autoload 'Configuration', 'sherlock_homes/configuration'
   autoload 'Locator', 'sherlock_homes/locator'
-  autoload 'PropertyFinder', 'sherlock_homes/property_finder'
+  autoload 'Redfin', 'sherlock_homes/redfin'
+  autoload 'Trulia', 'sherlock_homes/trulia'
+  autoload 'Zillow', 'sherlock_homes/zillow'
 end
