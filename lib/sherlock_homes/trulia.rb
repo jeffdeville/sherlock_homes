@@ -64,24 +64,59 @@ module SherlockHomes
 
     class SummaryParser < AbstractParser
       def parse
-        result = []
+        result = Hash.new
         @data.css('li').each do |li|
-          result << li.text.strip
+          text = li.text.strip
+          next if text.eql? "Edit Home Facts"
+          result.merge! BulletItemParser.parse(text)
         end
-        result.delete("Edit Home Facts")
         result
       end
     end
 
     class PublicRecordsParser < AbstractParser
       def parse
-        result = []
+        result = Hash.new
         @data.css('li').each do |group|
           group.css('ul > li').each do |li|
-            result << li.text.strip
+            result.merge! BulletItemParser.parse(li.text.strip)
           end
         end
         result
+      end
+    end
+
+    class BulletItemParser < AbstractParser
+      def parse
+        key = 'unknown'
+        value = nil
+        sep = ':'
+        patterns = [
+          'partial bathrooms', 'partial bathroom', 'bathrooms', 'bathroom',
+          'bedrooms', 'bedroom', 'rooms', 'room', 'built in', 'sqft',
+          'fireplace', 'units', 'unit'
+        ]
+        if @data.include? sep
+          splitted = @data.split(sep)
+          key = splitted[0].strip.downcase
+          value = splitted[1].strip
+        else
+          patterns.each do |pattern|
+            match_data = @data.match(/(.*)#{pattern}(.*)/i)
+            if match_data
+              key = pattern
+              value = "#{match_data[1]} #{match_data[2]}".strip
+              break
+            end
+          end
+          value ||= @data
+        end
+        {underscorize(key).to_sym => value}
+      end
+
+      private
+      def underscorize(str)
+        str.gsub(/[^\w]/, '_')
       end
     end
 
