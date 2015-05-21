@@ -12,14 +12,33 @@ RSpec.describe SherlockHomes::Trulia, sauce: true do
   Then { result.page_title.eql?('2490 Riverbend Road, Allentown, PA | Trulia.com') }
   And  { result.image_url.eql?('http://thumbs.trulia-cdn.com/pictures/thumbs_5/ps.71/a/0/e/f/picture-uh=19d9779cfdc0fbf4f6cab4ebfb20c73e-ps=a0efb56dc3f0a2839c2a7e7f7d1237ae-2490-Riverbend-Rd-Allentown-PA-18103.jpg') }
 
-  And  { result.summary.include?('Single-Family Home') }
-  And  { not result.summary.include?('Edit Home Facts') }
+  And  { result.summary.is_a? Hash }
+  And  { result.summary[:bedrooms].eql? '3' }
+  And  { result.summary[:built_in].eql? '1875' }
+  And  { result.summary[:lot_size].eql? '0.9 acres' }
+  And  { result.summary[:sqft].eql? '2,563' }
+  And  { not result.summary.values.include?('Edit Home Facts') }
 
   And  { result.description.include?('This is a Single-Family Home located at 2490 Riverbend Road') }
 
-  And  { result.public_records.include?('Single Family Residential') }
-  And  { result.public_records.include?('Parking: Detached Garage') }
-  And  { result.public_records.include?('County: Lehigh') }
+  And  { result.public_records.is_a? Hash }
+  And  { result.public_records[:partial_bathroom].eql? '1' }
+  And  { result.public_records[:built_in].eql? '1875' }
+  And  { result.public_records[:heating].eql? 'Central' }
+  And  { result.public_records[:exterior_walls].eql? 'Brick' }
+  And  { result.public_records[:basement].eql? 'Full Basement' }
+  And  { result.public_records[:bedrooms].eql? '3' }
+  And  { result.public_records[:sqft].eql? '2,563' }
+  And  { result.public_records[:stories].eql? '3 story with basement' }
+  And  { result.public_records[:parking].eql? 'Detached Garage' }
+  And  { result.public_records[:rooms].eql? '8' }
+  And  { result.public_records[:fireplace].eql? '' }
+  And  { result.public_records[:bathrooms].eql? '2' }
+  And  { result.public_records[:lot_size].eql? '0.9 acres' }
+  And  { result.public_records[:a_c].eql? 'Central' }
+  And  { result.public_records[:parking_spaces].eql? '2' }
+  And  { result.public_records[:unit].eql? '1' }
+  And  { result.public_records[:county].eql? 'Lehigh' }
 
   And  { result.taxes_assessments.is_a? Array }
   And  { result.taxes_assessments[0][:year].eql?('2014') }
