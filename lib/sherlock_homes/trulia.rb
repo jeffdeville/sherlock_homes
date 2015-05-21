@@ -41,31 +41,18 @@ module SherlockHomes
 
     private
 
-    class AbstractParser
+    module ImageUrlParser
       def self.parse(data)
-        new(data).parse
-      end
-
-      def initialize(data)
-        @data = data
-      end
-
-      def parse
-      end
-    end
-
-    class ImageUrlParser < AbstractParser
-      def parse
-        element = @data.first
+        element = data.first
         style = element.attributes['style'].value
         /background-image:url\('(.*)'\);/.match(style)[1]
       end
     end
 
-    class SummaryParser < AbstractParser
-      def parse
+    module SummaryParser
+      def self.parse(data)
         result = Hash.new
-        @data.css('li').each do |li|
+        data.css('li').each do |li|
           text = li.text.strip
           next if text.eql? "Edit Home Facts"
           result.merge! BulletItemParser.parse(text)
@@ -74,10 +61,10 @@ module SherlockHomes
       end
     end
 
-    class PublicRecordsParser < AbstractParser
-      def parse
+    module PublicRecordsParser
+      def self.parse(data)
         result = Hash.new
-        @data.css('li').each do |group|
+        data.css('li').each do |group|
           group.css('ul > li').each do |li|
             result.merge! BulletItemParser.parse(li.text.strip)
           end
@@ -86,8 +73,8 @@ module SherlockHomes
       end
     end
 
-    class BulletItemParser < AbstractParser
-      def parse
+    module BulletItemParser
+      def self.parse(data)
         key = 'unknown'
         value = nil
         sep = ':'
@@ -96,34 +83,30 @@ module SherlockHomes
           'bedrooms', 'bedroom', 'rooms', 'room', 'built in', 'sqft',
           'fireplace', 'units', 'unit'
         ]
-        if @data.include? sep
-          splitted = @data.split(sep)
+        underscorize = ->(str) { str.gsub(/[^\w]/, '_') }
+        if data.include? sep
+          splitted = data.split(sep)
           key = splitted[0].strip.downcase
           value = splitted[1].strip
         else
           patterns.each do |pattern|
-            match_data = @data.match(/(.*)#{pattern}(.*)/i)
+            match_data = data.match(/(.*)#{pattern}(.*)/i)
             if match_data
               key = pattern
               value = "#{match_data[1]} #{match_data[2]}".strip
               break
             end
           end
-          value ||= @data
+          value ||= data
         end
-        {underscorize(key).to_sym => value}
-      end
-
-      private
-      def underscorize(str)
-        str.gsub(/[^\w]/, '_')
+        {underscorize.call(key).to_sym => value}
       end
     end
 
-    class PriceHistoryParser < AbstractParser
-      def parse
+    module PriceHistoryParser
+      def self.parse(data)
         results = []
-        @data.css('.rowHover').each_with_index do |item, index|
+        data.css('.rowHover').each_with_index do |item, index|
           result = {
             date: item.css('td:nth-child(1)').text.strip,
             event: item.css('td:nth-child(2)').text.gsub('view detail', '').strip,
@@ -132,7 +115,7 @@ module SherlockHomes
             agents: item.css('td:nth-child(5)').text.strip,
             detail: {}
           }
-          @data.css("#property_deed_#{index+1} > td > ul > li").each do |li|
+          data.css("#property_deed_#{index+1} > td > ul > li").each do |li|
             key = li.css('.col.cols7.pls').text.strip
             value = li.css('.col.lastCol.pln').text.strip
             result[:detail][key] = value
