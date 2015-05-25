@@ -7,4 +7,6 @@ gemspec
 gem 'rubillow', github: 'jeffdeville/rubillow'
 
 # scraper
-gem 'yasf', github: 'algonauti/yasf'
+gem 'site_prism', github: 'natritmeyer/site_prism'
+gem 'poltergeist', github: 'teampoltergeist/poltergeist'
+

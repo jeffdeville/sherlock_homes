@@ -23,5 +23,5 @@ RSpec.configure do |config|
   config.filter_run :focus
   config.order = :random
   config.default_formatter = 'doc' if config.files_to_run.one?
-  config.warnings = true
+  config.warnings = false
 end

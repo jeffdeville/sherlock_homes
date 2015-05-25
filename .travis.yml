@@ -9,6 +9,7 @@ matrix:
     - rvm: ruby-head
 env:
   global:
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
     - ZILLOW_KEY=fake-zillow-key
 addons:
   sauce_connect:

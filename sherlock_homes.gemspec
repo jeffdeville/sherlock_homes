@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
 
   # Runtime
   spec.add_dependency 'geocoder', '~> 1.2'
+  spec.add_dependency 'activesupport', '~> 4.2'
 
   # Developmenet
   spec.add_development_dependency 'bundler', '>= 1.7'
@@ -33,6 +34,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'webmock'
   spec.add_development_dependency 'vcr'
   spec.add_development_dependency 'dotenv'
-  spec.add_development_dependency 'sauce'
-  spec.add_development_dependency 'parallel_tests'
 end
