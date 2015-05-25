@@ -3,6 +3,8 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'dotenv'
 require 'rspec/given'
 require 'webmock/rspec'
+require 'capybara/rspec'
+require 'capybara-screenshot/rspec'
 
 Dotenv.load('.env')
 
@@ -24,4 +26,14 @@ RSpec.configure do |config|
   config.order = :random
   config.default_formatter = 'doc' if config.files_to_run.one?
   config.warnings = false
+
+  config.after :each do |example|
+    if example.exception
+      Capybara::Screenshot.screenshot_and_save_page
+    end
+  end
 end
+
+
+Capybara::Screenshot.webkit_options = { width: 1024, height: 768 }
+Capybara::Screenshot.prune_strategy = { keep: 20 }

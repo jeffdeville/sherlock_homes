@@ -1,6 +1,6 @@
 RSpec.configure do |config|
 
-  config.before(:each) do
+  config.append_after do
     SherlockHomes::Scraper.restart_phantomjs
   end
 

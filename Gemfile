@@ -9,4 +9,4 @@ gem 'rubillow', github: 'jeffdeville/rubillow'
 # scraper
 gem 'site_prism', github: 'natritmeyer/site_prism'
 gem 'poltergeist', github: 'teampoltergeist/poltergeist'
-
+gem 'capybara-screenshot'
