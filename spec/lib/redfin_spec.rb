@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe SherlockHomes::Redfin do
+RSpec.describe SherlockHomes::Redfin, skip_ci: true do
 
   When do
     subject.class.set_url 'https://www.redfin.com/PA/Allentown/2354-S-Cedar-Crest-Blvd-18103/home/59034427'
