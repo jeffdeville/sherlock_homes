@@ -4,6 +4,7 @@ require 'capybara'
 require 'capybara/poltergeist'
 require 'geocoder'
 require 'site_prism'
+require 'visiflow'
 
 require 'sherlock_homes/configuration'
 require 'sherlock_homes/rubillow'
