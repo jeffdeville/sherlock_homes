@@ -21,9 +21,9 @@ http_interactions:
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Thu, 07 May 2015 09:44:24 GMT
+      - Tue, 26 May 2015 14:00:16 GMT
       Expires:
-      - Fri, 08 May 2015 09:44:24 GMT
+      - Wed, 27 May 2015 14:00:16 GMT
       Cache-Control:
       - public, max-age=86400
       Access-Control-Allow-Origin:
@@ -35,7 +35,7 @@ http_interactions:
       X-Frame-Options:
       - SAMEORIGIN
       Alternate-Protocol:
-      - 80:quic,p=1
+      - 80:quic,p=0
       Accept-Ranges:
       - none
       Vary:
@@ -121,5 +121,5 @@ http_interactions:
            "status" : "OK"
         }
     http_version: 
-  recorded_at: Thu, 07 May 2015 09:44:24 GMT
+  recorded_at: Tue, 26 May 2015 14:00:16 GMT
 recorded_with: VCR 2.9.3
