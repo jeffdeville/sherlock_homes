@@ -1,6 +1,15 @@
 module SherlockHomes
   class Redfin < SitePrism::Page
 
+    def self.find(url)
+      Scraper.restart_phantomjs
+      scraper = new
+      scraper.class.set_url url
+      scraper.load
+      scraper.wait_for_contact_box
+      scraper
+    end
+
     class BasicInfo < SitePrism::Section
       element :bed, 'table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2)'
 

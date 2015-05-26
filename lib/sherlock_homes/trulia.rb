@@ -1,6 +1,15 @@
 module SherlockHomes
   class Trulia < SitePrism::Page
 
+    def self.find(url)
+      Scraper.restart_phantomjs
+      scraper = new
+      scraper.class.set_url url
+      scraper.load
+      scraper.wait_for_estimates
+      scraper
+    end
+
     class PriceHistory < SitePrism::Section
       element :date, 'td:nth-child(1)'
       element :event, 'td:nth-child(2)'

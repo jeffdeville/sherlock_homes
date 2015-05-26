@@ -3,9 +3,7 @@ require 'spec_helper'
 RSpec.describe SherlockHomes::Trulia do
 
   When do
-    subject.class.set_url 'http://www.trulia.com/homes/Pennsylvania/Allentown/sold/1263178-2490-Riverbend-Rd-Allentown-PA-18103'
-    subject.load
-    subject.wait_for_estimates
+    subject.class.find 'http://www.trulia.com/homes/Pennsylvania/Allentown/sold/1263178-2490-Riverbend-Rd-Allentown-PA-18103'
   end
 
   Then { subject.title.eql?('2490 Riverbend Road, Allentown, PA | Trulia.com') }
