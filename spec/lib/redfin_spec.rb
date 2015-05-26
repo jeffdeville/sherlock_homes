@@ -7,7 +7,7 @@ RSpec.describe SherlockHomes::Redfin do
     subject.load
   end
 
-  Then { subject.title.eql?('2354 S Cedar Crest Blvd, Lower Macungie Twp, PA 18103 | MLS# 486144 | Redfin') }
+  Then { subject.title.eql?('235 S Cedar Crest Blvd, Lower Macungie Twp, PA 18103 | MLS# 486144 | Redfin') }
 
   # Description
   And { expect(subject.description.text).to_not be_nil }

@@ -11,3 +11,9 @@ env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
     - ZILLOW_KEY=fake-zillow-key
+    - ARTIFACTS_KEY=AKIAJCBZL6IWL7T2KF3A
+    - ARTIFACTS_SECRET=mxtKiLhdIyvPRjrrmGwCkJF2pT8KZES5exS4HA8D
+    - ARTIFACTS_BUCKET=sherlock-homes
+addons:
+  artifacts: true
+  debug: true
