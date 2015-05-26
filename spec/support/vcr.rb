@@ -10,5 +10,5 @@ VCR.configure do |c|
 
   # Put placeholders instead of sensitive data in
   # our cassettes so we don't have to commit to source control.
-  c.filter_sensitive_data('<ZILLOW_KEY>') { SherlockHomes.configuration.zillow_key }
+  c.filter_sensitive_data('<ZILLOW_KEY>') { SherlockHomes.config.zillow_key }
 end

@@ -15,12 +15,19 @@ if ENV['CODECLIMATE_REPO_TOKEN']
   CodeClimate::TestReporter.start
 end
 
-support_files = Dir[File.join(
-  File.expand_path('../../spec/support/**/*.rb', __FILE__)
-)]
-support_files.each { |f| require f }
-
 RSpec.configure do |config|
+  config.before :suite do
+    SherlockHomes.configure do |config|
+      config.driver = :poltergeist
+      config.wait_time = 60
+      config.timeout = 60
+      config.debug = false
+      #config.proxy_port = '2424'
+      #config.proxy_host = '127.0.0.1'
+    end
+    SherlockHomes::Driver.load!
+  end
+
   config.run_all_when_everything_filtered = true
   config.filter_run :focus
   config.order = :random
@@ -34,6 +41,9 @@ RSpec.configure do |config|
   end
 end
 
+# Requires supporting ruby files with custom matchers and macros, etc,
+# in spec/support/ and its subdirectories.
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 Capybara::Screenshot.webkit_options = { width: 1024, height: 768 }
 Capybara::Screenshot.prune_strategy = { keep: 20 }
