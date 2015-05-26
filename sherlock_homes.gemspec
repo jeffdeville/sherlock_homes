@@ -20,7 +20,10 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Runtime
+  spec.add_dependency 'activesupport', '~> 4.2'
   spec.add_dependency 'geocoder', '~> 1.2'
+  spec.add_dependency 'capybara', '~> 2.4.4'
+  spec.add_dependency 'site_prism', '~> 2.7'
 
   # Developmenet
   spec.add_development_dependency 'bundler', '>= 1.7'
@@ -33,6 +36,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'webmock'
   spec.add_development_dependency 'vcr'
   spec.add_development_dependency 'dotenv'
-  spec.add_development_dependency 'sauce'
-  spec.add_development_dependency 'parallel_tests'
+  spec.add_development_dependency 'capybara-screenshot'
 end

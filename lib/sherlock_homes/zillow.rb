@@ -9,7 +9,7 @@ module SherlockHomes
   class Zillow
 
     def initialize
-      Rubillow.configure { |c| c.zwsid = SherlockHomes.configuration.zillow_key }
+      Rubillow.configure { |c| c.zwsid = SherlockHomes.config.zillow_key }
     end
 
     def search(address, citystatezip)

@@ -1,268 +1,83 @@
 module SherlockHomes
-  class Redfin
-    include Yasf::Crawler
+  class Redfin < SitePrism::Page
 
-    property :page_title, xpath: '/html/head/title'
-
-    property :description, css: '#redfin_search_details_basicinfo_MarketingRemark_0'
-
-    property :stories, css: '#redfin_search_details_basicinfo_MoreInfoRow_0 > td.more-info-data'
-
-    property :property_type, css: '#redfin_search_details_basicinfo_MoreInfoRow_1 > td.more-info-data'
-
-    property :style, css: '#redfin_search_details_basicinfo_MoreInfoRow_2 > td.more-info-data'
-
-    property :year_built, css: '#redfin_search_details_basicinfo_MoreInfoRow_3 > td.more-info-data'
-
-    property :community, css: '#redfin_search_details_basicinfo_MoreInfoRow_4 > td.more-info-data'
-
-    property :country, css: '#redfin_search_details_basicinfo_MoreInfoRow_5 > td.more-info-data > a'
-
-    property :mls, css: '#redfin_search_details_basicinfo_MoreInfoRow_6 > td.more-info-data'
-
-    property :basic_info, css: '#redfin_search_details_PublicRecordsPanel_0' do |node_set|
-      BasicInfoParser.parse(node_set)
+    def self.find(url)
+      Scraper.restart_phantomjs
+      scraper = new
+      scraper.class.set_url url
+      scraper.load
+      scraper.wait_for_contact_box
+      scraper
     end
 
-    property :property_details, css: '#redfin_search_details_amenities_PropertyDetailsPanel_0 > div.panel.col12.pd.collapsible' do |node_set|
-      PropertyDetailsParser.parse(node_set)
+    class BasicInfo < SitePrism::Section
+      element :bed, 'table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2)'
+
+      element :baths, 'table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(2)'
+      element :floors, 'table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2)'
+      element :year_built, 'table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(4) > td:nth-child(2)'
+      element :year_renovated, 'table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(5) > td:nth-child(2)'
+
+      element :style, 'table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2)'
+      element :finished, 'table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(2)'
+      element :unfinished, 'table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2)'
+      element :total_sqft, 'table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(4) > td:nth-child(2)'
+      element :lot_size, 'table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(5) > td:nth-child(2)'
     end
 
-    collection :property_history, css: '#redfin_search_common_elements_BasicTable_1 > tbody > tr' do
-      property :date, css: 'td:nth-child(1)'
-      property :event, css: 'td:nth-child(2) > div.event'
-      property :price, css: 'td:nth-child(3)'
-      property :appreciation, css: 'td:nth-child(4)'
-      property :source, css: 'td:nth-child(5)'
+    class TaxInfo < SitePrism::Section
+      element :land, 'tr:nth-child(1) > td:nth-child(2)'
+      element :additions, 'tr:nth-child(2) > td:nth-child(2)'
+      element :total, 'tr:nth-child(3) > td:nth-child(2)'
+      element :taxes, 'tr:nth-child(4) > td:nth-child(2)'
     end
 
-    property :walk_score, css: '#redfin_search_details_neighborhood_NeighborhoodStatsPanel_0 > div.main-content > div:nth-child(3) > div > div > div.viz-container > div > div.content > div.percentage'
-
-    property :chart, css: '#redfin_search_details_neighborhood_NeighborhoodStatsChart_0 > div > img' do |node|
-      "https://www.redfin.com/#{node.attribute('src')}" rescue nil
+    class History < SitePrism::Section
+      element :date, 'td:nth-child(1)'
+      element :event, 'td:nth-child(2)'
+      element :price, 'td:nth-child(3)'
+      element :appreciation, 'td:nth-child(4)'
+      element :source, 'td:nth-child(5)'
     end
 
-    private
+    class Details < SitePrism::Section
+      element :group_title, 'div.super-group-title'
 
-    class BasicInfoParser
-
-      def self.parse(node_set)
-        new(node_set).parse
+      sections :group_content, "div.super-group-content > div" do
+        element :title, 'h4.title'
+        elements :values, 'li'
       end
+    end
 
-      def initialize(root)
-        @root = root
-      end
+    class Schools < SitePrism::Section
+      element :name, 'td:nth-child(2)'
+      element :type, 'td:nth-child(3)'
+      element :grades, 'td:nth-child(4)'
+      element :distance, 'td:nth-child(6)'
+    end
 
-      def parse
-        results = {}
-        @root.css('tr').each do |node|
-          text = node.css('td:nth-child(1)').text.strip
-          case text
-          when 'Beds'
-            results[:beds] = node.css('td:nth-child(2)').text.strip
-          when 'Baths'
-            results[:baths] = node.css('td:nth-child(2)').text.strip
-          when 'Floors'
-            results[:floors] = node.css('td:nth-child(2)').text.strip
-          when 'Year Built'
-            results[:year_built] = node.css('td:nth-child(2)').text.strip
-          when 'Year Renovated'
-            results[:year_renovated] = node.css('td:nth-child(2)').text.strip
-          when 'Style'
-            results[:style] = node.css('td:nth-child(2)').text.strip
-          when 'Finished Sq. Ft.'
-            results[:finished] = node.css('td:nth-child(2)').text.strip
-          when 'Unfinished Sq. Ft.'
-            results[:unfinished] = node.css('td:nth-child(2)').text.strip
-          when 'Total Sq. Ft.'
-            results[:total] = node.css('td:nth-child(2)').text.strip
-          when 'Lot Size'
-            results[:lot_size] = node.css('td:nth-child(2)').text.strip
-          when 'Land'
-            results[:land] = node.css('td:nth-child(2)').text.strip
-          when 'Additions'
-            results[:additions] = node.css('td:nth-child(2)').text.strip
-          when 'Total'
-            results[:total] = node.css('td:nth-child(2)').text.strip
-          when /^Taxes/
-            results[:taxes] = node.css('td:nth-child(2)').text.strip
-          end
-        end
-        results
+    class Neighborhood < SitePrism::Section
+      element :walk_score,  'div[data-dojo-attach-point=walkScoreNode] div.percentage'
+      element :stats_chart, 'div.chart-image > img'
+
+      def stats_chart_url
+        "https://www.redfin.com#{stats_chart['src']}"
       end
 
     end
 
-    class PropertyDetailsParser
+    element :contact_box, '#redfin_common_widgets_contactBox_ContactBoxHTML_4'
 
-      def self.parse(node_set)
-        new(node_set).parse
-      end
+    element :description, '.remarks > p:nth-child(1) > span:nth-child(1)'
 
-      def initialize(root)
-        @root = root
-      end
+    section :neighborhood, Neighborhood, 'div[data-dojo-attach-point=neighborhoodPanelContainer] div[data-dojo-attach-point=mainContent]'
+    section  :basic_info, BasicInfo, 'div[data-dojo-attach-point=publicRecordsPanelContainer] > div.basic-info > div:nth-child(2)'
+    section  :tax_info, TaxInfo, 'div[data-dojo-attach-point=publicRecordsPanelContainer] > div.taxable-value > div:nth-child(2) > table:nth-child(1) > tbody:nth-child(1)'
+    sections :history, History, 'div[data-dojo-attach-point=historyTableNode] > table > tbody > tr'
+    sections :details, Details, 'div[data-dojo-attach-point=propertyDetailsPanelContainer] > div[data-dojo-attach-point=contentNode] > div:first-child > div'
 
-      def parse
-        results = {}
-        @root.css('div.gutter-left.gutter-right.transition-opaque.amenities-content-node > div').children.each do |node|
-          case node.css('div.super-group-title').text.strip
-          when 'Interior Features'
-            results[:interior_features] = parse_interior_features(node)
-          when 'Parking / Garage'
-            results[:parking_garage] = parse_parking_garage(node)
-          when 'Taxes / Assessments'
-            results[:taxes_assessments] = parse_taxes_assessments(node)
-          when 'Property / Lot Details'
-            results[:property_lot_details] = parse_property_lot_details(node)
-          when 'Exterior Features, Homeowners Association, School / Neighborhood & Utilities'
-            results[:exterior_features] = parse_exterior_features(node)
-          when 'Location Details & Misc. Information'
-            results[:location_details] = parse_location_details(node)
-          end
-        end
-        results
-      end
+    sections :schools, Schools, 'div[data-dojo-attach-point=schoolsContent] tr[data-dojo-attach-point=fullSchoolRow]'
 
-
-      private
-
-      def parse_location_details(node_set)
-        results = []
-        node_set.css('div.super-group-content').children.each do |node|
-          result = Hash.new
-          case node.css('h4.title').text.strip
-          when 'Location Information'
-            result[:location_information] = []
-            node.css('li').each do |l|
-              result[:location_information] << l.text.strip
-            end
-          when 'Miscellaneous'
-            result[:miscellaneous] = []
-            node.css('li').each do |l|
-              result[:miscellaneous] << l.text.strip
-            end
-          end
-          results << result
-        end
-        results
-      end
-
-      def parse_exterior_features(node_set)
-        results = []
-        node_set.css('div.super-group-content').children.each do |node|
-          result = Hash.new
-          case node.css('h4.title').text.strip
-          when 'Exterior Features'
-            result[:exterior_features] = []
-            node.css('li').each do |l|
-              result[:exterior_features] << l.text.strip
-            end
-          when 'Homeowners Association Information'
-            result[:homeowners_association_information] = []
-            node.css('li').each do |l|
-              result[:homeowners_association_information] << l.text.strip
-            end
-          when 'School Information'
-            result[:school_information] = []
-            node.css('li').each do |l|
-              result[:school_information] << l.text.strip
-            end
-          when 'Utility Information'
-            result[:utility_information] = []
-            node.css('li').each do |l|
-              result[:utility_information] << l.text.strip
-            end
-          end
-          results << result
-        end
-        results
-
-      end
-
-      def parse_property_lot_details(node_set)
-        results = []
-        node_set.css('div.super-group-content').children.each do |node|
-          result = Hash.new
-          case node.css('h4.title').text.strip
-          when 'Lot Information'
-            result[:lot_information] = []
-            node.css('li').each do |l|
-              result[:lot_information] << l.text.strip
-            end
-          when 'Property Features'
-            result[:property_features] = []
-            node.css('li').each do |l|
-              result[:property_features] << l.text.strip
-            end
-          when 'Property Information'
-            result[:property_information] = []
-            node.css('li').each do |l|
-              result[:property_information] << l.text.strip
-            end
-          end
-          results << result
-        end
-        results
-      end
-
-      def parse_taxes_assessments(node_set)
-        results = []
-        node_set.css('div.super-group-content').children.each do |node|
-          result = Hash.new
-          case node.css('h4.title').text.strip
-          when 'Assessments'
-            result[:assessments] = []
-            node.css('li').each do |l|
-              result[:assessments] << l.text.strip
-            end
-          when 'Tax Information'
-            result[:tax_information] = []
-            node.css('li').each do |l|
-              result[:tax_information] << l.text.strip
-            end
-          end
-          results << result
-        end
-        results
-      end
-
-      def parse_parking_garage(node_set)
-        results = []
-        node_set.css('div.super-group-content').children.each do |node|
-          result = Hash.new
-          case node.css('h4.title').text.strip
-          when 'Parking Information'
-            result[:parking_information] = []
-            node.css('li').each do |l|
-              result[:parking_information] << l.text.strip
-            end
-          when 'Garage'
-            result[:garage] = []
-            node.css('li').each do |l|
-              result[:garage] << l.text.strip
-            end
-          end
-          results << result
-        end
-        results
-      end
-
-      def parse_interior_features(node_set)
-        results = []
-        node_set.css('div.super-group-content').children.each do |node|
-          result = Hash.new
-          result[:title] = node.css('h4').text.strip
-          result[:values] = []
-          node.css('li').each do |l|
-            result[:values] << l.text.strip
-          end
-          results << result
-        end
-        results
-      end
-    end
 
   end
 end

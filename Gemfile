@@ -5,6 +5,4 @@ gemspec
 
 #  zillow API
 gem 'rubillow', github: 'jeffdeville/rubillow'
-
-# scraper
-gem 'yasf', github: 'algonauti/yasf'
+gem 'poltergeist', github: 'teampoltergeist/poltergeist'
