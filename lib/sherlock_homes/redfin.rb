@@ -57,6 +57,8 @@ module SherlockHomes
 
     end
 
+    element :contact_box, '#redfin_common_widgets_contactBox_ContactBoxHTML_4'
+
     element :description, '.remarks > p:nth-child(1) > span:nth-child(1)'
 
     section :neighborhood, Neighborhood, 'div[data-dojo-attach-point=neighborhoodPanelContainer] div[data-dojo-attach-point=mainContent]'
