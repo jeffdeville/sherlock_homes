@@ -5,3 +5,4 @@ gemspec
 
 #  zillow API
 gem 'rubillow', github: 'jeffdeville/rubillow'
+gem 'poltergeist', github: 'teampoltergeist/poltergeist'
