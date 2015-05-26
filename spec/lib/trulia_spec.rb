@@ -11,7 +11,7 @@ RSpec.describe SherlockHomes::Trulia do
 
   # Public Records
   And  { subject.public_records.is_a? Hash }
-  And  { subject.public_records[:partial_bathroom].eql? '1' }
+  And  { subject.public_records[:bathroom].eql? '1 Partial' }
   And  { subject.public_records[:built_in].eql? '1875' }
   And  { subject.public_records[:heating].eql? 'Central' }
   And  { subject.public_records[:exterior_walls].eql? 'Brick' }
