@@ -5,7 +5,6 @@ RSpec.describe SherlockHomes::Redfin, skip_ci: true do
   When do
     subject.class.set_url 'https://www.redfin.com/PA/Allentown/2354-S-Cedar-Crest-Blvd-18103/home/59034427'
     subject.load
-    subject.wait_for_buy_box
   end
 
   Then { subject.title.eql?('2354 S Cedar Crest Blvd, Lower Macungie Twp, PA 18103 | MLS# 486144 | Redfin') }
