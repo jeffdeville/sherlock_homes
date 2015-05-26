@@ -13,7 +13,7 @@ module SherlockHomes
       results = Geocoder.search(address, options)
       case results.count
       when FOUND
-        results.first.coordinates
+        results.first
       when EMPTY
         raise MissingLocationError.new address
       else
