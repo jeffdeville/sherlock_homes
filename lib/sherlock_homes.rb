@@ -17,4 +17,5 @@ module SherlockHomes
   autoload 'Scraper',       'sherlock_homes/scraper'
   autoload 'Trulia',        'sherlock_homes/trulia'
   autoload 'Zillow',        'sherlock_homes/zillow'
+  autoload 'Google',        'sherlock_homes/google'
 end
