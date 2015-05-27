@@ -3,4 +3,5 @@ module SherlockHomes
     include Virtus.model
 
     #TODO
+  end
 end
