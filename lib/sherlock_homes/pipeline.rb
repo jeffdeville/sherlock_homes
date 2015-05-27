@@ -45,8 +45,9 @@ module SherlockHomes
     end
 
     def scrape_redfin_by_location(l)
-      #TODO
-      SherlockHomes::Redfin.new
+      uri = URI("https://www.redfin.com/stingray/do/query-location?v=1&location=#{l.formatted_address}")
+      property_url = SherlockHomes::Redfin.property_url_from(uri.to_s)
+      SherlockHomes::Redfin.find(property_url)
     end
 
     def scrape_trulia_by_location(l)
