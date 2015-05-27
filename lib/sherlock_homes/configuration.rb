@@ -1,4 +1,13 @@
 module SherlockHomes
+
+  def self.config
+    @configuration ||= Configuration.new
+  end
+
+  def self.configure
+    yield config
+  end
+
   class Configuration
     attr_accessor :zillow_key,
                   :driver,

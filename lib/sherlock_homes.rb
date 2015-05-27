@@ -3,22 +3,13 @@ require 'active_support/core_ext'
 require 'capybara'
 require 'capybara/poltergeist'
 require 'geocoder'
-require 'rubillow'
 require 'site_prism'
 
+require 'sherlock_homes/configuration'
+require 'sherlock_homes/rubillow'
 require 'sherlock_homes/version'
 
 module SherlockHomes
-
-  def self.config
-    @configuration ||= Configuration.new
-  end
-
-  def self.configure
-    yield config
-  end
-
-  autoload 'Configuration', 'sherlock_homes/configuration'
   autoload 'Driver',        'sherlock_homes/driver'
   autoload 'Locator',       'sherlock_homes/locator'
   autoload 'Redfin',        'sherlock_homes/redfin'

@@ -8,10 +8,6 @@ module SherlockHomes
 
   class Zillow
 
-    def initialize
-      Rubillow.configure { |c| c.zwsid = SherlockHomes.config.zillow_key }
-    end
-
     def search(address, citystatezip)
       property = Rubillow::PropertyDetails.deep_search_results(address: address, citystatezip: citystatezip)
       error_code = property.code.to_i
