@@ -65,6 +65,6 @@ RSpec.describe SherlockHomes::Redfin, skip_ci: true do
 
   # Neighborhood
   And  { expect(subject.neighborhood.walk_score.text).to be_eql('2') }
-  And  { expect(subject.neighborhood.stats_chart['src']).to include('/stingray/do/region-chart/2015_05_19/2/6989/MEDIAN_HOUSE_SQ_FT_BY_TIME.png') }
+  And  { expect(subject.neighborhood.stats_chart['src']).to include('2/6989/MEDIAN_HOUSE_SQ_FT_BY_TIME.png') }
 
 end
