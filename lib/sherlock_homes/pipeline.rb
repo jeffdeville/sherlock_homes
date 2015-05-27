@@ -45,11 +45,13 @@ module SherlockHomes
     end
 
     def scrape_redfin_by_location(l)
-      #TODO determine redfin URL by using their search or Google search w/ site:redfin.com
+      #TODO
+      SherlockHomes::Redfin.new
     end
 
     def scrape_trulia_by_location(l)
-      #TODO determine redfin URL by using their search or Google search w/ site:trulia.com
+      uri = URI("http://www.trulia.com/submit_search?tst=h&search=#{l.formatted_address}")
+      Trulia.find(uri.to_s)
     end
   end
 
