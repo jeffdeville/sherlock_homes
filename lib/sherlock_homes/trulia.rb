@@ -56,7 +56,7 @@ module SherlockHomes
     def public_records
       @public_records ||= Hash.new.tap do |result|
         all('div.mtl ul.listBulleted > li').each do |pr|
-          result.merge! parse(pr.text)
+          result.merge! parse(pr.text) {|key, oldval, newval| [oldval, newval].flatten}
         end
       end
     end
@@ -69,9 +69,8 @@ module SherlockHomes
       sep = ':'
 
       patterns = [
-        'partial bathrooms', 'partial bathroom', 'bathrooms', 'bathroom',
-        'bedrooms', 'bedroom', 'rooms', 'room', 'built in', 'sqft',
-        'fireplace', 'units', 'unit'
+        'bathrooms', 'bathroom', 'bedrooms', 'bedroom', 'rooms', 'room',
+        'built in', 'sqft', 'fireplace', 'units', 'unit'
       ]
 
       if data.include? sep

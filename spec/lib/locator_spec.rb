@@ -7,8 +7,11 @@ RSpec.describe SherlockHomes::Locator, vcr: true do
     context 'with a valid address' do
       Given(:address) { '2114 Bigelow Ave, Seattle, WA' }
       When(:result) { subject.class.search(address) }
-      Then { result.is_a? Array }
-      And { result.eql? [47.637923, -122.3481375] }
+      Then { result.is_a? Geocoder::Result::Google }
+      And { result.state_code.eql? 'WA' }
+      And { result.city.eql? 'Seattle' }
+      And { result.route.eql? 'Bigelow Avenue North' }
+      And { result.street_number.eql? '2114' }
     end
 
     context 'with ambiguous address' do

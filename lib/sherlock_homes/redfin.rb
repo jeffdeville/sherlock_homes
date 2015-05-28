@@ -1,13 +1,30 @@
 module SherlockHomes
   class Redfin < SitePrism::Page
 
-    def self.find(url)
+    def self.find(property_url)
       Scraper.restart_phantomjs
       scraper = new
-      scraper.class.set_url url
+      scraper.class.set_url property_url
       scraper.load
       scraper.wait_for_contact_box
       scraper
+    end
+
+    def self.property_url_from(search_url)
+      Scraper.restart_phantomjs
+      session = Capybara.current_session
+      session.visit(search_url)
+      raw_response = session.text
+      raw_response.gsub!('{}&&','')
+      response = JSON.parse(raw_response)
+      search_results = []
+      %w(listings pastSalesBuildings).each do |key|
+        if response.has_key?(key) then
+          search_results = response[key]
+          break
+        end
+      end
+      return "https://www.redfin.com#{search_results[0]['URL']}"
     end
 
     class BasicInfo < SitePrism::Section
@@ -77,7 +94,6 @@ module SherlockHomes
     sections :details, Details, 'div[data-dojo-attach-point=propertyDetailsPanelContainer] > div[data-dojo-attach-point=contentNode] > div:first-child > div'
 
     sections :schools, Schools, 'div[data-dojo-attach-point=schoolsContent] tr[data-dojo-attach-point=fullSchoolRow]'
-
 
   end
 end
