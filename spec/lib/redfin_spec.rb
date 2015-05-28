@@ -76,6 +76,5 @@ RSpec.describe SherlockHomes::Redfin, skip_ci: true do
     When(:result_url) { subject.class.property_url_from(search_url) }
     Then { result_url.eql? property_url }
   end
->>>>>>> get trulia property url from search results
 
 end
