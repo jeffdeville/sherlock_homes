@@ -45,14 +45,14 @@ module SherlockHomes
     end
 
     def scrape_redfin_by_location(l)
-      uri = URI("https://www.redfin.com/stingray/do/query-location?v=1&location=#{l.formatted_address}")
-      property_url = SherlockHomes::Redfin.property_url_from(uri.to_s)
+      url = URI.encode("https://www.redfin.com/stingray/do/query-location?v=1&location=#{l.formatted_address}")
+      property_url = SherlockHomes::Redfin.property_url_from(url)
       SherlockHomes::Redfin.find(property_url)
     end
 
     def scrape_trulia_by_location(l)
-      uri = URI("http://www.trulia.com/submit_search?tst=h&search=#{l.formatted_address}")
-      Trulia.find(uri.to_s)
+      url = URI.encode("http://www.trulia.com/submit_search?tst=h&search=#{l.formatted_address}")
+      Trulia.find(url)
     end
   end
 

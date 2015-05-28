@@ -3,8 +3,8 @@ require 'spec_helper'
 RSpec.describe SherlockHomes::Trulia do
 
   When do
-    uri = URI('http://www.trulia.com/submit_search?tst=h&search=2490 Riverbend Road, Allentown, PA 18103, USA')
-    subject.class.find uri.to_s
+    url = URI.encode('http://www.trulia.com/submit_search?tst=h&search=2490 Riverbend Road, Allentown, PA 18103, USA')
+    subject.class.find url
   end
 
   Then { subject.title.eql?('2490 Riverbend Road, Allentown, PA | Trulia.com') }

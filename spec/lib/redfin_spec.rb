@@ -72,7 +72,7 @@ RSpec.describe SherlockHomes::Redfin, skip_ci: true do
 
   describe '#property_url_from' do
     Given(:formatted_address) { '2354 South Cedar Crest Boulevard, Allentown, PA 18103, USA' }
-    Given(:search_url) { URI("https://www.redfin.com/stingray/do/query-location?v=1&location=#{formatted_address}").to_s }
+    Given(:search_url) { URI.encode("https://www.redfin.com/stingray/do/query-location?v=1&location=#{formatted_address}") }
     When(:result_url) { subject.class.property_url_from(search_url) }
     Then { result_url.eql? property_url }
   end
