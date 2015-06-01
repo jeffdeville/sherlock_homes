@@ -21,6 +21,11 @@ RSpec.describe SherlockHomes::RedfinMapper do
             '# of Rooms (Total): 14',
             'Dining Room',
             'Daylight, Partially Finished'
+          ],
+          interior_features: [
+            'Cooling: Zoned Cooling',
+            'Fireplace Location: Family Room, Living Room',
+            'Technology: Cable, Security System'
           ]
         }
       )
@@ -33,6 +38,7 @@ RSpec.describe SherlockHomes::RedfinMapper do
     And  { property.full_bathrooms.eql? 2 }
     And  { property.partial_bathrooms.eql? 1 }
     And  { property.total_rooms.eql? 14 }
+    And  { property.interior_features.eql? raw_property.property_details[:interior_features] }
 
   end
 end

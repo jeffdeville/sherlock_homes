@@ -4,11 +4,12 @@ module SherlockHomes
     def self.map(raw_property)
       mapper = new(raw_property)
       mapper.map_property_details
+      mapper.extract_from_property_details
       # TODO invoke methods to map other groups of data
       mapper.property
     end
 
-    def map_property_details
+    def extract_from_property_details
       extractors_map.each do |key, extractors|
         items = raw_property.property_details[key]
         extractors.each do |extractor|
@@ -21,6 +22,11 @@ module SherlockHomes
           end
         end
       end
+    end
+
+    def map_property_details
+      property.interior_features = raw_property.property_details[:interior_features]
+      #TODO continue with other mappings
     end
 
     private

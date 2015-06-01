@@ -23,8 +23,8 @@ module SherlockHomes
     end
 
     def map_bathroom_info
-      %w(bathrooms bathroom).each do |bath|
-        value = raw_property.public_records[bath.to_sym]
+      %i(bathrooms bathroom).each do |bath|
+        value = raw_property.public_records[bath]
         next if value.nil?
         match_data = /(.*)Partial/.match(value)
         if match_data
