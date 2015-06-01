@@ -1,18 +1,11 @@
 module SherlockHomes
-  class RedfinMapper
+  class RedfinMapper < Mapper
 
     def self.map(raw_property)
       mapper = new(raw_property)
       mapper.map_property_details
       # TODO invoke methods to map other groups of data
       mapper.property
-    end
-
-    attr_reader :raw_property, :property
-
-    def initialize(_raw_property)
-      @raw_property = _raw_property
-      @property = Property.new
     end
 
     def map_property_details

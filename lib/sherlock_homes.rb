@@ -13,6 +13,7 @@ require 'sherlock_homes/version'
 module SherlockHomes
   autoload 'Driver',        'sherlock_homes/driver'
   autoload 'Locator',       'sherlock_homes/locator'
+  autoload 'Mapper',        'sherlock_homes/mapper'
   autoload 'Normalizer',    'sherlock_homes/normalizer'
   autoload 'Property',      'sherlock_homes/model/property'
   autoload 'Pipeline',      'sherlock_homes/pipeline'
@@ -20,5 +21,6 @@ module SherlockHomes
   autoload 'RedfinMapper',  'sherlock_homes/redfin_mapper'
   autoload 'Scraper',       'sherlock_homes/scraper'
   autoload 'Trulia',        'sherlock_homes/trulia'
+  autoload 'TruliaMapper',  'sherlock_homes/trulia_mapper'
   autoload 'Zillow',        'sherlock_homes/zillow'
 end
