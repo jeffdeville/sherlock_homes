@@ -62,7 +62,7 @@ module SherlockHomes
 
       sections :group_content, "div.super-group-content > div" do
         element :title, 'h4.title'
-        elements :values, 'li'
+        elements :items, 'li'
       end
     end
 
@@ -94,6 +94,36 @@ module SherlockHomes
     sections :details, Details, 'div[data-dojo-attach-point=propertyDetailsPanelContainer] > div[data-dojo-attach-point=contentNode] > div:first-child > div'
 
     sections :schools, Schools, 'div[data-dojo-attach-point=schoolsContent] tr[data-dojo-attach-point=fullSchoolRow]'
+
+
+    # Instance Methods
+    # for more fine-grained data
+
+    def property_details
+      @property_details ||= Hash.new.tap do |result|
+        details.each do |detail|
+          detail.group_content.each do |group|
+            title = group.title.text
+            key = title.titleize.delete(' ').underscore
+            break unless keys_white_list.include? key
+            items = []
+            group.items.each { |item| items << item.text }
+            result[key.to_sym] = items unless items.empty?
+          end
+        end
+      end
+    end
+
+    private
+
+    def keys_white_list
+      %(
+        bedroom_information bathroom_information interior_features room_information
+        parking_information garage assessments tax_information lot_information property_features
+        property_information exterior_features homeowners_association_information
+        school_information utility_information location_information
+      )
+    end
 
   end
 end
