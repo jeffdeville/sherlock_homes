@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe SherlockHomes::Normalizer do
 
-  subject { SherlockHomes::Normalizer.new(redfin, trulia, zillow) }
+  subject { SherlockHomes::Normalizer.new(redfin: redfin, trulia: trulia, zillow: zillow) }
 
   describe '#normalize' do
     Given(:redfin) do

@@ -20,7 +20,7 @@ module SherlockHomes
               break
             end
           end
-        end
+        end unless items.nil?
       end
     end
 

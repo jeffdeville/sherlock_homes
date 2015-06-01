@@ -3,7 +3,7 @@ module SherlockHomes
 
     attr_reader :redfin, :zillow, :trulia, :property
 
-    def initialize(redfin=Property.new, trulia=Property.new, zillow=Property.new)
+    def initialize(redfin: Property.new, trulia: Property.new, zillow: Property.new)
       @redfin = redfin
       @zillow = zillow
       @trulia = trulia
