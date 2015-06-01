@@ -23,4 +23,5 @@ module SherlockHomes
   autoload 'Trulia',        'sherlock_homes/trulia'
   autoload 'TruliaMapper',  'sherlock_homes/trulia_mapper'
   autoload 'Zillow',        'sherlock_homes/zillow'
+  autoload 'ZillowMapper',  'sherlock_homes/zillow_mapper'
 end
