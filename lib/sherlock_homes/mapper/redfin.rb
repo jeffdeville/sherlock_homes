@@ -27,6 +27,12 @@ module SherlockHomes
 
     def map_property_details
       property.interior_features = raw_property.property_details[:interior_features]
+      property.property_information = raw_property.property_details[:property_information]
+      property.exterior_features = raw_property.property_details[:exterior_features]
+      property.homeowners_association_information = raw_property.property_details[:homeowners_association_information]
+      property.school_information = raw_property.property_details[:school_information]
+      property.utility_information = raw_property.property_details[:utility_information]
+      property.location_information = raw_property.property_details[:location_information]
       #TODO continue with other mappings
     end
 
@@ -51,6 +57,8 @@ module SherlockHomes
         room_information: [
           { attr: :total_rooms, regexp: /# of Rooms \(Total\):(.*)/ }
         ]
+        #TODO Lot Sq. Ft from lot_information
+        #TODO Sq. Ft. from property_features
       }
     end
 
