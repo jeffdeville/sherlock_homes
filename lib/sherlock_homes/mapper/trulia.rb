@@ -1,5 +1,5 @@
 module SherlockHomes
-  class TruliaMapper < Mapper
+  class Mapper::Trulia < Mapper
 
     def self.map(raw_property)
       mapper = new(raw_property)

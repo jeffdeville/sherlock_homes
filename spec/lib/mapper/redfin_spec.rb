@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-RSpec.describe SherlockHomes::RedfinMapper do
+RSpec.describe SherlockHomes::Mapper::Redfin do
 
-  subject { SherlockHomes::RedfinMapper }
+  subject { SherlockHomes::Mapper::Redfin }
 
   describe '#map' do
 

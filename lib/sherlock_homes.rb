@@ -18,10 +18,7 @@ module SherlockHomes
   autoload 'Property',      'sherlock_homes/model/property'
   autoload 'Pipeline',      'sherlock_homes/pipeline'
   autoload 'Redfin',        'sherlock_homes/redfin'
-  autoload 'RedfinMapper',  'sherlock_homes/redfin_mapper'
   autoload 'Scraper',       'sherlock_homes/scraper'
   autoload 'Trulia',        'sherlock_homes/trulia'
-  autoload 'TruliaMapper',  'sherlock_homes/trulia_mapper'
   autoload 'Zillow',        'sherlock_homes/zillow'
-  autoload 'ZillowMapper',  'sherlock_homes/zillow_mapper'
 end
