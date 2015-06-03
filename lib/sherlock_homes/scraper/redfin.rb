@@ -1,8 +1,8 @@
 module SherlockHomes
-  class Redfin < SitePrism::Page
+  class Scraper::Redfin < Scraper
 
     def self.find(property_url)
-      Scraper.restart_phantomjs
+      restart_phantomjs
       scraper = new
       scraper.class.set_url property_url
       scraper.load
@@ -11,7 +11,7 @@ module SherlockHomes
     end
 
     def self.property_url_from(search_url)
-      Scraper.restart_phantomjs
+      restart_phantomjs
       session = Capybara.current_session
       session.visit(search_url)
       raw_response = session.text

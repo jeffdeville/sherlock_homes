@@ -17,8 +17,6 @@ module SherlockHomes
   autoload 'Normalizer',    'sherlock_homes/normalizer'
   autoload 'Property',      'sherlock_homes/model/property'
   autoload 'Pipeline',      'sherlock_homes/pipeline'
-  autoload 'Redfin',        'sherlock_homes/redfin'
   autoload 'Scraper',       'sherlock_homes/scraper'
-  autoload 'Trulia',        'sherlock_homes/trulia'
   autoload 'Zillow',        'sherlock_homes/zillow'
 end

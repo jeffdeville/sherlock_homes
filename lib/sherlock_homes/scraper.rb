@@ -1,5 +1,7 @@
 module SherlockHomes
-  class Scraper
+  class Scraper < SitePrism::Page
+    autoload 'Redfin',  'sherlock_homes/scraper/redfin'
+    autoload 'Trulia',  'sherlock_homes/scraper/trulia'
 
     def self.restart_phantomjs
       driver = Capybara.current_session.driver

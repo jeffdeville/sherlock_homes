@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe SherlockHomes::Trulia, skip_ci: true do
+RSpec.describe SherlockHomes::Scraper::Trulia, skip_ci: true do
 
   When do
     url = URI.encode('http://www.trulia.com/submit_search?tst=h&search=2490 Riverbend Road, Allentown, PA 18103, USA')
