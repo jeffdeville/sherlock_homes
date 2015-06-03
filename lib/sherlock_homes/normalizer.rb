@@ -14,7 +14,7 @@ module SherlockHomes
       pick_from(source: :zillow, attributes: [:property_type])
       pick_from(source: :redfin, attributes: [:interior_features])
       pick_from(source: :redfin, store_differences: true, attributes: [
-        :bedrooms, :partial_bathrooms, :full_bathrooms, :total_rooms
+        :floors, :bedrooms, :partial_bathrooms, :full_bathrooms, :total_rooms
       ])
 
       #TODO to be continued ...

@@ -8,6 +8,9 @@ RSpec.describe SherlockHomes::Mapper::Redfin do
 
     Given(:raw_property) do
       double(
+        basic_info: double(
+          floors: double(text: '2')
+        ),
         property_details: {
           bedroom_information: [
             'Bedrooms: 4'
@@ -34,6 +37,7 @@ RSpec.describe SherlockHomes::Mapper::Redfin do
     When(:property) { subject.map(raw_property) }
 
     Then { property.is_a? SherlockHomes::Property }
+    And  { property.floors.eql? 2 }
     And  { property.bedrooms.eql? 4 }
     And  { property.full_bathrooms.eql? 2 }
     And  { property.partial_bathrooms.eql? 1 }

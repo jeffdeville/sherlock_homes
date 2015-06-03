@@ -9,6 +9,7 @@ RSpec.describe SherlockHomes::Mapper::Trulia do
     Given(:raw_property) do
       double(
         public_records: {
+          stories: '3 story with basement',
           bathrooms: '2',
           bathroom: '1 Partial',
           bedrooms: '3',
@@ -20,6 +21,7 @@ RSpec.describe SherlockHomes::Mapper::Trulia do
     When(:property) { subject.map(raw_property) }
 
     Then { property.is_a? SherlockHomes::Property }
+    And  { property.floors.eql? 3 }
     And  { property.bedrooms.eql? 3 }
     And  { property.full_bathrooms.eql? 2 }
     And  { property.partial_bathrooms.eql? 1 }

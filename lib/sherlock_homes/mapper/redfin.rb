@@ -5,6 +5,7 @@ module SherlockHomes
       mapper = new(raw_property)
       mapper.map_property_details
       mapper.extract_from_property_details
+      mapper.map_basic_info
       # TODO invoke methods to map other groups of data
       mapper.property
     end
@@ -28,6 +29,12 @@ module SherlockHomes
       property.interior_features = raw_property.property_details[:interior_features]
       #TODO continue with other mappings
     end
+
+    def map_basic_info
+      property.floors = raw_property.basic_info.floors.text
+      #TODO continue with other mappings
+    end
+
 
     private
 
