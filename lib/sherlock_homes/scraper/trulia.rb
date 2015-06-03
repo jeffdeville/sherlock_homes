@@ -1,8 +1,8 @@
 module SherlockHomes
-  class Trulia < SitePrism::Page
+  class Scraper::Trulia < Scraper
 
     def self.find(url)
-      Scraper.restart_phantomjs
+      restart_phantomjs
       scraper = new
       scraper.class.set_url url
       scraper.load

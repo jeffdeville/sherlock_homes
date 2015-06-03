@@ -7,9 +7,9 @@ module SherlockHomes
       attribute :raw_location, String
       attribute :location, Geocoder::Result::Google
 
-      attribute :raw_redfin, SherlockHomes::Redfin
+      attribute :raw_redfin, SherlockHomes::Scraper::Redfin
       attribute :raw_zillow, Rubillow::Models::DeepSearchResult
-      attribute :raw_trulia, SherlockHomes::Trulia
+      attribute :raw_trulia, SherlockHomes::Scraper::Trulia
 
       attribute :redfin, Property
       attribute :zillow, Property
@@ -61,13 +61,13 @@ module SherlockHomes
 
     def scrape_redfin_by_location(l)
       url = URI.encode("https://www.redfin.com/stingray/do/query-location?v=1&location=#{l.formatted_address}")
-      property_url = SherlockHomes::Redfin.property_url_from(url)
-      SherlockHomes::Redfin.find(property_url)
+      property_url = SherlockHomes::Scraper::Redfin.property_url_from(url)
+      SherlockHomes::Scraper::Redfin.find(property_url)
     end
 
     def scrape_trulia_by_location(l)
       url = URI.encode("http://www.trulia.com/submit_search?tst=h&search=#{l.formatted_address}")
-      Trulia.find(url)
+      Scraper::Trulia.find(url)
     end
   end
 
