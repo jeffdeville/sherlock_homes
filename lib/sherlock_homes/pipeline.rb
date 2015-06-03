@@ -6,14 +6,23 @@ module SherlockHomes
     context do
       attribute :raw_location, String
       attribute :location, Geocoder::Result::Google
-      attribute :raw_property, Hash
+
+      attribute :raw_redfin, SherlockHomes::Redfin
+      attribute :raw_zillow, Rubillow::Models::DeepSearchResult
+      attribute :raw_trulia, SherlockHomes::Trulia
+
+      attribute :redfin, Property
+      attribute :zillow, Property
+      attribute :trulia, Property
+
       attribute :property, Property
     end
 
     def self.steps
       [
         {geocode: {success: :scrape_property_info}},
-        {scrape_property_info: {success: :combine_property_info}},
+        {scrape_property_info: {success: :map_property_info}},
+        {map_property_info: {success: :combine_property_info}},
         :combine_property_info
       ]
     end
@@ -24,15 +33,21 @@ module SherlockHomes
     end
 
     def scrape_property_info(location: required)
-      raw_property = Hash.new
-      raw_property[:zillow] = query_zillow_by_location location
-      raw_property[:redfin] = scrape_redfin_by_location location
-      raw_property[:trulia] = scrape_trulia_by_location location
-      Visiflow::Response.success(raw_property: raw_property)
+      raw_zillow = query_zillow_by_location location
+      raw_redfin = scrape_redfin_by_location location
+      raw_trulia = scrape_trulia_by_location location
+      Visiflow::Response.success(raw_redfin: raw_redfin, raw_zillow: raw_zillow, raw_trulia: raw_trulia)
     end
 
-    def combine_property_info(raw_property: required)
-      property = Normalizer.for_property raw_property
+    def map_property_info(raw_redfin: required, raw_zillow: required, raw_trulia: required)
+      redfin = RedfinMapper.map(raw_redfin)
+      zillow = ZillowMapper.map(raw_zillow)
+      trulia = TruliaMapper.map(raw_trulia)
+      Visiflow::Response.success(redfin: redfin, zillow: zillow, trulia: trulia)
+    end
+
+    def combine_property_info(redfin: required, zillow: required, trulia: required)
+      property = Normalizer.new(redfin: redfin, zillow: zillow, trulia: trulia).normalize
       Visiflow::Response.success(property: property)
     end
 
