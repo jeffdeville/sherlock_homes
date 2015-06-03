@@ -32,6 +32,7 @@ module SherlockHomes
 
     def map_basic_info
       property.floors = raw_property.basic_info.floors.text
+      property.year_built = raw_property.basic_info.year_built.text
       #TODO continue with other mappings
     end
 

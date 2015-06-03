@@ -7,6 +7,8 @@ RSpec.describe SherlockHomes::Normalizer do
   describe '#normalize' do
     Given(:redfin) do
       SherlockHomes::Property.new(
+        year_built: 1948,
+        floors: 3,
         bedrooms: 4,
         partial_bathrooms: 2,
         full_bathrooms: 2,
@@ -17,6 +19,7 @@ RSpec.describe SherlockHomes::Normalizer do
 
     Given(:zillow) do
       SherlockHomes::Property.new(
+        year_built: 1948,
         property_type: 'SingleFamily',
         bedrooms: 3,
         total_rooms: 5
@@ -25,6 +28,8 @@ RSpec.describe SherlockHomes::Normalizer do
 
     Given(:trulia) do
       SherlockHomes::Property.new(
+        year_built: 1948,
+        floors: 3,
         bedrooms: 3,
         partial_bathrooms: 1,
         full_bathrooms: 2,
@@ -39,6 +44,14 @@ RSpec.describe SherlockHomes::Normalizer do
     And  { property.property_type.eql? zillow.property_type }
     And  { property.sources[:property_type].eql? :zillow }
     And  { property.differences[:property_type].nil? }
+
+    And  { property.year_built.eql? zillow.year_built }
+    And  { property.sources[:year_built].eql? :zillow }
+    And  { property.differences[:year_built].nil? }
+
+    And  { property.floors.eql? redfin.floors }
+    And  { property.sources[:floors].eql? :redfin }
+    And  { property.differences[:floors].nil? }
 
     And  { property.bedrooms.eql? redfin.bedrooms }
     And  { property.sources[:bedrooms].eql? :redfin }

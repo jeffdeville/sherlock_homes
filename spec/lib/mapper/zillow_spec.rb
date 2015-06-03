@@ -9,6 +9,7 @@ RSpec.describe SherlockHomes::Mapper::Zillow do
     Given(:raw_property) do
       double(
         use_code: 'SingleFamily',
+        year_built: '1948',
         bedrooms: '3',
         total_rooms: '5'
       )
@@ -18,6 +19,7 @@ RSpec.describe SherlockHomes::Mapper::Zillow do
 
     Then { property.is_a? SherlockHomes::Property }
     And  { property.property_type.eql? 'SingleFamily' }
+    And  { property.year_built.eql? 1948 }
     And  { property.bedrooms.eql? 3 }
     And  { property.total_rooms.eql? 5 }
 

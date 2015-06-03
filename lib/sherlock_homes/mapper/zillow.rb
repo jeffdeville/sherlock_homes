@@ -10,6 +10,7 @@ module SherlockHomes
 
     def map_basic_info
       property.property_type = raw_property.use_code
+      property.year_built = raw_property.year_built
       property.bedrooms = raw_property.bedrooms
       property.total_rooms = raw_property.total_rooms
     end

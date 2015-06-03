@@ -3,6 +3,7 @@ module SherlockHomes
     include Virtus.model
 
     attribute :property_type, String
+    attribute :year_built, Integer
     attribute :floors, Integer
     attribute :bedrooms, Integer
     attribute :full_bathrooms, Integer

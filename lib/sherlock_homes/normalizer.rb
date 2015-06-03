@@ -11,7 +11,7 @@ module SherlockHomes
     end
 
     def normalize
-      pick_from(source: :zillow, attributes: [:property_type])
+      pick_from(source: :zillow, attributes: [:property_type, :year_built])
       pick_from(source: :redfin, attributes: [:interior_features])
       pick_from(source: :redfin, store_differences: true, attributes: [
         :floors, :bedrooms, :partial_bathrooms, :full_bathrooms, :total_rooms

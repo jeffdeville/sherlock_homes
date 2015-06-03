@@ -9,6 +9,8 @@ module SherlockHomes
     end
 
     def map_public_records
+      property.year_built = raw_property.public_records[:built_in]
+
       stories = raw_property.public_records[:stories]
       stories ||= raw_property.public_records[:story]
       property.floors = /[[:digit:]]*/.match(stories).to_s.to_i
