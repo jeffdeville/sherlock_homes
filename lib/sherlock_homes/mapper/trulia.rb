@@ -10,6 +10,7 @@ module SherlockHomes
 
     def map_public_records
       property.year_built = raw_property.public_records[:built_in]
+      property.house_sqft = raw_property.public_records[:sqft].delete(',')
 
       stories = raw_property.public_records[:stories]
       stories ||= raw_property.public_records[:story]

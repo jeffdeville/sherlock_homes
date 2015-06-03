@@ -17,7 +17,7 @@ module SherlockHomes
           items.each do |item|
             match_data = extractor[:regexp].match(item)
             if match_data
-              property.send("#{extractor[:attr]}=", match_data[1].strip)
+              property.send("#{extractor[:attr]}=", "#{match_data[1].strip}#{match_data[2]}")
               break
             end
           end
@@ -56,9 +56,13 @@ module SherlockHomes
         ],
         room_information: [
           { attr: :total_rooms, regexp: /# of Rooms \(Total\):(.*)/ }
+        ],
+        lot_information: [
+          { attr: :lot_sqft, regexp: /Lot Sq. Ft.:([^,]+),?([^,]+),?([^,]*)/ }
+        ],
+        property_features: [
+          { attr: :house_sqft, regexp: /Sq. Ft.:([^,]+),?([^,]+),?([^,]*)/ }
         ]
-        #TODO Lot Sq. Ft from lot_information
-        #TODO Sq. Ft. from property_features
       }
     end
 

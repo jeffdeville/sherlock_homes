@@ -5,6 +5,8 @@ module SherlockHomes
     attribute :property_type, String
     attribute :year_built, Integer
     attribute :floors, Integer
+    attribute :house_sqft, Integer
+    attribute :lot_sqft, Integer
     attribute :bedrooms, Integer
     attribute :full_bathrooms, Integer
     attribute :partial_bathrooms, Integer

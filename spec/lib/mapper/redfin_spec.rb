@@ -33,7 +33,8 @@ RSpec.describe SherlockHomes::Mapper::Redfin do
           ],
           lot_information: [
             'Private Road, Wooded',
-            '5 - 10 Acres'
+            '5 - 10 Acres',
+            'Lot Sq. Ft.: 328,878'
           ],
           property_features: [
             'Acres: 7.55',
@@ -71,6 +72,8 @@ RSpec.describe SherlockHomes::Mapper::Redfin do
     Then { property.is_a? SherlockHomes::Property }
     And  { property.year_built.eql? 1948 }
     And  { property.floors.eql? 2 }
+    And  { property.house_sqft.eql? 2969 }
+    And  { property.lot_sqft.eql? 328878 }
     And  { property.bedrooms.eql? 4 }
     And  { property.full_bathrooms.eql? 2 }
     And  { property.partial_bathrooms.eql? 1 }
