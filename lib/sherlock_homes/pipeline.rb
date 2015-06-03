@@ -7,10 +7,6 @@ module SherlockHomes
       attribute :raw_location, String
       attribute :location, Geocoder::Result::Google
 
-      attribute :raw_redfin, SherlockHomes::Scraper::Redfin
-      attribute :raw_zillow, Rubillow::Models::DeepSearchResult
-      attribute :raw_trulia, SherlockHomes::Scraper::Trulia
-
       attribute :redfin, Property
       attribute :zillow, Property
       attribute :trulia, Property
@@ -20,9 +16,10 @@ module SherlockHomes
 
     def self.steps
       [
-        {geocode: {success: :scrape_property_info}},
-        {scrape_property_info: {success: :map_property_info}},
-        {map_property_info: {success: :combine_property_info}},
+        {geocode: {success: :search_redfin}},
+        {search_redfin: {success: :search_zillow}},
+        {search_zillow: {success: :search_trulia}},
+        {search_trulia: {success: :combine_property_info}},
         :combine_property_info
       ]
     end
@@ -32,18 +29,22 @@ module SherlockHomes
       Visiflow::Response.success(location: location)
     end
 
-    def scrape_property_info(location: required)
-      raw_zillow = query_zillow_by_location location
-      raw_redfin = scrape_redfin_by_location location
-      raw_trulia = scrape_trulia_by_location location
-      Visiflow::Response.success(raw_redfin: raw_redfin, raw_zillow: raw_zillow, raw_trulia: raw_trulia)
+    def search_redfin(location: required)
+      raw_redfin = scrape_redfin_by_location(location)
+      redfin = Mapper::Redfin.map(raw_redfin)
+      Visiflow::Response.success(redfin: redfin)
     end
 
-    def map_property_info(raw_redfin: required, raw_zillow: required, raw_trulia: required)
-      redfin = Mapper::Redfin.map(raw_redfin)
+    def search_zillow(location: required)
+      raw_zillow = query_zillow_by_location location
       zillow = Mapper::Zillow.map(raw_zillow)
+      Visiflow::Response.success(zillow: zillow)
+    end
+
+    def search_trulia(location: required)
+      raw_trulia = scrape_trulia_by_location location
       trulia = Mapper::Trulia.map(raw_trulia)
-      Visiflow::Response.success(redfin: redfin, zillow: zillow, trulia: trulia)
+      Visiflow::Response.success(trulia: trulia)
     end
 
     def combine_property_info(redfin: required, zillow: required, trulia: required)
