@@ -1,5 +1,5 @@
 module SherlockHomes
-  class RedfinMapper < Mapper
+  class Mapper::Redfin < Mapper
 
     def self.map(raw_property)
       mapper = new(raw_property)

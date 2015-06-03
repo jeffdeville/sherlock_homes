@@ -1,5 +1,5 @@
 module SherlockHomes
-  class ZillowMapper < Mapper
+  class Mapper::Zillow < Mapper
 
     def self.map(raw_property)
       mapper = new(raw_property)

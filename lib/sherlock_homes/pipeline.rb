@@ -40,9 +40,9 @@ module SherlockHomes
     end
 
     def map_property_info(raw_redfin: required, raw_zillow: required, raw_trulia: required)
-      redfin = RedfinMapper.map(raw_redfin)
-      zillow = ZillowMapper.map(raw_zillow)
-      trulia = TruliaMapper.map(raw_trulia)
+      redfin = Mapper::Redfin.map(raw_redfin)
+      zillow = Mapper::Zillow.map(raw_zillow)
+      trulia = Mapper::Trulia.map(raw_trulia)
       Visiflow::Response.success(redfin: redfin, zillow: zillow, trulia: trulia)
     end
 
