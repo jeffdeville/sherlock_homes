@@ -3,11 +3,22 @@ module SherlockHomes
     include Virtus.model
 
     attribute :property_type, String
+    attribute :year_built, Integer
+    attribute :floors, Integer
+    attribute :house_sqft, Integer
+    attribute :lot_sqft, Integer
     attribute :bedrooms, Integer
     attribute :full_bathrooms, Integer
     attribute :partial_bathrooms, Integer
     attribute :total_rooms, Integer
+
     attribute :interior_features, Array[String]
+    attribute :property_information, Array[String]
+    attribute :exterior_features, Array[String]
+    attribute :homeowners_association_information, Array[String]
+    attribute :school_information, Array[String]
+    attribute :utility_information, Array[String]
+    attribute :location_information, Array[String]
 
     # Keeps track of the source for each stored attribute.
     # Example: {bedrooms: 'redfin'}
