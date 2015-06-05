@@ -20,6 +20,11 @@ module SherlockHomes
     attribute :utility_information, Array[String]
     attribute :location_information, Array[String]
 
+    attribute :taxable_land, Integer
+    attribute :taxable_additions, Integer
+    attribute :taxable_total, Integer
+    attribute :taxes, Integer
+
     # Keeps track of the source for each stored attribute.
     # Example: {bedrooms: 'redfin'}
     attribute :sources, Hash[Symbol => String]

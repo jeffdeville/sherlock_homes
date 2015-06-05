@@ -63,7 +63,13 @@ RSpec.describe SherlockHomes::Mapper::Redfin do
             'Lower Macungie',
             'Zoning Code: S'
           ]
-        }
+        },
+        tax_info: double(
+          land: double(text: '$102,400'),
+          additions: double(text: '$265,100'),
+          total: double(text: '$367,500'),
+          taxes: double(text: '$7,624')
+        )
       )
     end
 
@@ -78,6 +84,7 @@ RSpec.describe SherlockHomes::Mapper::Redfin do
     And  { property.full_bathrooms.eql? 2 }
     And  { property.partial_bathrooms.eql? 1 }
     And  { property.total_rooms.eql? 14 }
+
     And  { property.interior_features.eql? raw_property.property_details[:interior_features] }
     And  { property.property_information.eql? raw_property.property_details[:property_information] }
     And  { property.exterior_features.eql? raw_property.property_details[:exterior_features] }
@@ -85,6 +92,11 @@ RSpec.describe SherlockHomes::Mapper::Redfin do
     And  { property.school_information.eql? raw_property.property_details[:school_information] }
     And  { property.utility_information.eql? raw_property.property_details[:utility_information] }
     And  { property.location_information.eql? raw_property.property_details[:location_information] }
+
+    And  { property.taxable_land.eql? 102400 }
+    And  { property.taxable_additions.eql? 265100 }
+    And  { property.taxable_total.eql? 367500 }
+    And  { property.taxes.eql? 7624 }
 
   end
 end

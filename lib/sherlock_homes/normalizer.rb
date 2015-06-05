@@ -16,7 +16,8 @@ module SherlockHomes
       pick_from(source: :redfin, attributes: [
         :interior_features, :property_information, :exterior_features,
         :homeowners_association_information, :school_information, :utility_information,
-        :location_information
+        :location_information, :taxable_land, :taxable_additions, :taxable_total,
+        :taxes
       ])
 
       pick_from(source: :redfin, store_differences: true, attributes: [

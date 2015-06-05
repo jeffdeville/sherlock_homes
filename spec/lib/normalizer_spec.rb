@@ -43,7 +43,12 @@ RSpec.describe SherlockHomes::Normalizer do
         location_information: [
           'Lower Macungie',
           'Zoning Code: S'
-        ]
+        ],
+
+        taxable_land: 102400,
+        taxable_additions: 265100,
+        taxable_total: 367500,
+        taxes: 7624
       )
     end
 
@@ -145,6 +150,22 @@ RSpec.describe SherlockHomes::Normalizer do
     And  { property.location_information.eql? redfin.location_information }
     And  { property.sources[:location_information].eql? :redfin }
     And  { property.differences[:location_information].nil? }
+
+    And  { property.taxable_land.eql? redfin.taxable_land }
+    And  { property.sources[:taxable_land].eql? :redfin }
+    And  { property.differences[:taxable_land].nil? }
+
+    And  { property.taxable_additions.eql? redfin.taxable_additions }
+    And  { property.sources[:taxable_additions].eql? :redfin }
+    And  { property.differences[:taxable_additions].nil? }
+
+    And  { property.taxable_total.eql? redfin.taxable_total }
+    And  { property.sources[:taxable_total].eql? :redfin }
+    And  { property.differences[:taxable_total].nil? }
+
+    And  { property.taxes.eql? redfin.taxes }
+    And  { property.sources[:taxes].eql? :redfin }
+    And  { property.differences[:taxes].nil? }
 
   end
 

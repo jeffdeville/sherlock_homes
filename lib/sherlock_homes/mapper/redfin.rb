@@ -6,6 +6,7 @@ module SherlockHomes
       mapper.map_property_details
       mapper.extract_from_property_details
       mapper.map_basic_info
+      mapper.map_tax_info
       # TODO invoke methods to map other groups of data
       mapper.property
     end
@@ -40,6 +41,14 @@ module SherlockHomes
       property.floors = raw_property.basic_info.floors.text
       property.year_built = raw_property.basic_info.year_built.text
       #TODO continue with other mappings
+    end
+
+    def map_tax_info
+      digits_to_i = lambda { |s| s.gsub(/[^0-9]/, '').to_i }
+      property.taxable_land = digits_to_i.call(raw_property.tax_info.land.text)
+      property.taxable_additions = digits_to_i.call(raw_property.tax_info.additions.text)
+      property.taxable_total = digits_to_i.call(raw_property.tax_info.total.text)
+      property.taxes = digits_to_i.call(raw_property.tax_info.taxes.text)
     end
 
 
