@@ -26,6 +26,13 @@ RSpec.describe SherlockHomes::Mapper::Redfin do
             'Dining Room',
             'Daylight, Partially Finished'
           ],
+          parking_information: [
+            '# of Cars: 2',
+            'Parking: Off Street'
+          ],
+          garage: [
+            'Built-In'
+          ],
           interior_features: [
             'Cooling: Zoned Cooling',
             'Fireplace Location: Family Room, Living Room',
@@ -101,6 +108,9 @@ RSpec.describe SherlockHomes::Mapper::Redfin do
     And  { property.taxable_additions.eql? 265100 }
     And  { property.taxable_total.eql? 367500 }
     And  { property.taxes.eql? 7624 }
+
+    And  { property.parking_ncars.eql? 2 }
+    And  { property.parking_info.eql? 'Off Street; Garage: Built-In' }
 
   end
 end

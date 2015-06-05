@@ -51,7 +51,10 @@ RSpec.describe SherlockHomes::Normalizer do
         taxes: 7624,
 
         walk_score: 2,
-        neighborhood_stats_chart: '2/6989/MEDIAN_HOUSE_SQ_FT_BY_TIME.png'
+        neighborhood_stats_chart: '2/6989/MEDIAN_HOUSE_SQ_FT_BY_TIME.png',
+
+        parking_ncars: 2,
+        parking_info: 'Off Street; Garage: Built-In'
       )
     end
 
@@ -177,6 +180,14 @@ RSpec.describe SherlockHomes::Normalizer do
     And  { property.neighborhood_stats_chart.eql? redfin.neighborhood_stats_chart }
     And  { property.sources[:neighborhood_stats_chart].eql? :redfin }
     And  { property.differences[:neighborhood_stats_chart].nil? }
+
+    And  { property.parking_ncars.eql? redfin.parking_ncars }
+    And  { property.sources[:parking_ncars].eql? :redfin }
+    And  { property.differences[:parking_ncars].nil? }
+
+    And  { property.parking_info.eql? redfin.parking_info }
+    And  { property.sources[:parking_info].eql? :redfin }
+    And  { property.differences[:parking_info].nil? }
 
   end
 

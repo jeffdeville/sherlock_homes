@@ -3,8 +3,8 @@ module SherlockHomes
 
     def self.map(raw_property)
       mapper = new(raw_property)
-      mapper.map_property_details
       mapper.extract_from_property_details
+      mapper.map_property_details
       mapper.map_basic_info
       mapper.map_tax_info
       # TODO invoke methods to map other groups of data
@@ -34,6 +34,10 @@ module SherlockHomes
       property.school_information = raw_property.property_details[:school_information]
       property.utility_information = raw_property.property_details[:utility_information]
       property.location_information = raw_property.property_details[:location_information]
+
+      garage = raw_property.property_details[:garage]
+      property.parking_info += "; Garage: #{garage.join(', ')}" if garage
+
       #TODO continue with other mappings
     end
 
@@ -70,6 +74,10 @@ module SherlockHomes
         ],
         room_information: [
           { attr: :total_rooms, regexp: /# of Rooms \(Total\):(.*)/ }
+        ],
+        parking_information: [
+          { attr: :parking_ncars, regexp: /# of Cars:(.*)/ },
+          { attr: :parking_info, regexp: /Parking:(.*)/ }
         ],
         lot_information: [
           { attr: :lot_sqft, regexp: /Lot Sq. Ft.:([^,]+),?([^,]+),?([^,]*)/ }

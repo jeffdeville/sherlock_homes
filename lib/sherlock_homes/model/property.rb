@@ -38,5 +38,8 @@ module SherlockHomes
     attribute :walk_score, Integer
     attribute :neighborhood_stats_chart, String
 
+    attribute :parking_ncars, Integer
+    attribute :parking_info, String
+
   end
 end

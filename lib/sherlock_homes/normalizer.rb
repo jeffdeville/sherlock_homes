@@ -17,7 +17,7 @@ module SherlockHomes
         :interior_features, :property_information, :exterior_features,
         :homeowners_association_information, :school_information, :utility_information,
         :location_information, :taxable_land, :taxable_additions, :taxable_total,
-        :taxes, :walk_score, :neighborhood_stats_chart
+        :taxes, :walk_score, :neighborhood_stats_chart, :parking_ncars, :parking_info
       ])
 
       pick_from(source: :redfin, store_differences: true, attributes: [
