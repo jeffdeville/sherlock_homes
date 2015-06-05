@@ -69,6 +69,10 @@ RSpec.describe SherlockHomes::Mapper::Redfin do
           additions: double(text: '$265,100'),
           total: double(text: '$367,500'),
           taxes: double(text: '$7,624')
+        ),
+        neighborhood: double(
+          walk_score: double(text: '2'),
+          stats_chart: {'src' => '2/6989/MEDIAN_HOUSE_SQ_FT_BY_TIME.png'}
         )
       )
     end

@@ -51,6 +51,11 @@ module SherlockHomes
       property.taxes = digits_to_i.call(raw_property.tax_info.taxes.text)
     end
 
+    def map_neighborhood_info
+      property.walk_score = neighborhood.walk_score.text
+      property.neighborhood_stats_chart = neighborhood.stats_chart['src']
+    end
+
 
     private
 

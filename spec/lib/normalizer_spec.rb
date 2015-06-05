@@ -48,7 +48,10 @@ RSpec.describe SherlockHomes::Normalizer do
         taxable_land: 102400,
         taxable_additions: 265100,
         taxable_total: 367500,
-        taxes: 7624
+        taxes: 7624,
+
+        walk_score: 2,
+        neighborhood_stats_chart: '2/6989/MEDIAN_HOUSE_SQ_FT_BY_TIME.png'
       )
     end
 
@@ -166,6 +169,14 @@ RSpec.describe SherlockHomes::Normalizer do
     And  { property.taxes.eql? redfin.taxes }
     And  { property.sources[:taxes].eql? :redfin }
     And  { property.differences[:taxes].nil? }
+
+    And  { property.walk_score.eql? redfin.walk_score }
+    And  { property.sources[:walk_score].eql? :redfin }
+    And  { property.differences[:walk_score].nil? }
+
+    And  { property.neighborhood_stats_chart.eql? redfin.neighborhood_stats_chart }
+    And  { property.sources[:neighborhood_stats_chart].eql? :redfin }
+    And  { property.differences[:neighborhood_stats_chart].nil? }
 
   end
 
