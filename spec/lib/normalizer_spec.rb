@@ -14,8 +14,36 @@ RSpec.describe SherlockHomes::Normalizer do
         bedrooms: 4,
         partial_bathrooms: 2,
         full_bathrooms: 2,
-        interior_features: %w(Fireplace Cooling),
-        total_rooms: 6
+        total_rooms: 6,
+
+        interior_features: [
+          'Cooling: Zoned Cooling',
+          'Fireplace Location: Family Room, Living Room',
+          'Technology: Cable, Security System'
+        ],
+        property_information: [
+          'APN: 548580295557-1',
+          'Residential'
+        ],
+        exterior_features: [
+          'Roof: Slate',
+          'Patio, Porch'
+        ],
+        homeowners_association_information: [
+          'Condo HOA Fee: $0'
+        ],
+        school_information: [
+          'East Penn',
+          'High School: Emmaus'
+        ],
+        utility_information: [
+          'Water: Well',
+          'Sewer: Septic'
+        ],
+        location_information: [
+          'Lower Macungie',
+          'Zoning Code: S'
+        ]
       )
     end
 
@@ -85,6 +113,38 @@ RSpec.describe SherlockHomes::Normalizer do
     And  { property.interior_features.eql? redfin.interior_features }
     And  { property.sources[:interior_features].eql? :redfin }
     And  { property.differences[:interior_features].nil? }
+
+    And  { property.interior_features.eql? redfin.interior_features }
+    And  { property.sources[:interior_features].eql? :redfin }
+    And  { property.differences[:interior_features].nil? }
+
+    And  { property.interior_features.eql? redfin.interior_features }
+    And  { property.sources[:interior_features].eql? :redfin }
+    And  { property.differences[:interior_features].nil? }
+
+    And  { property.property_information.eql? redfin.property_information }
+    And  { property.sources[:property_information].eql? :redfin }
+    And  { property.differences[:property_information].nil? }
+
+    And  { property.exterior_features.eql? redfin.exterior_features }
+    And  { property.sources[:exterior_features].eql? :redfin }
+    And  { property.differences[:exterior_features].nil? }
+
+    And  { property.homeowners_association_information.eql? redfin.homeowners_association_information }
+    And  { property.sources[:homeowners_association_information].eql? :redfin }
+    And  { property.differences[:homeowners_association_information].nil? }
+
+    And  { property.school_information.eql? redfin.school_information }
+    And  { property.sources[:school_information].eql? :redfin }
+    And  { property.differences[:school_information].nil? }
+
+    And  { property.utility_information.eql? redfin.utility_information }
+    And  { property.sources[:utility_information].eql? :redfin }
+    And  { property.differences[:utility_information].nil? }
+
+    And  { property.location_information.eql? redfin.location_information }
+    And  { property.sources[:location_information].eql? :redfin }
+    And  { property.differences[:location_information].nil? }
 
   end
 
