@@ -27,6 +27,16 @@ module SherlockHomes
       return "https://www.redfin.com#{search_results[0]['URL']}"
     end
 
+    class SummaryInfo < SitePrism::Section
+      element :description, 'span[data-reactid=".0.0.1.2.1.0.2.0.1"]'
+      element :style, 'td[data-reactid=".0.0.1.2.1.0.3.0.0.1.1"]'
+      element :view, 'td[data-reactid=".0.0.1.2.1.0.3.0.0.2.1"]'
+      element :county, 'td[data-reactid=".0.0.1.2.1.0.3.0.0.3.1"]'
+      element :property_type, 'td[data-reactid=".0.0.1.2.1.0.3.1.0.0.1"]'
+      element :community, 'td[data-reactid=".0.0.1.2.1.0.3.1.0.2.1"]'
+      element :mls, 'td[data-reactid=".0.0.1.2.1.0.3.1.0.3.1"]'
+    end
+
     class BasicInfo < SitePrism::Section
       element :bed, 'table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2)'
 
@@ -85,8 +95,7 @@ module SherlockHomes
 
     element :contact_box, '#redfin_common_widgets_contactBox_ContactBoxHTML_4'
 
-    element :description, '.remarks > p:nth-child(1) > span:nth-child(1)'
-
+    section :summary_info, SummaryInfo, 'div[data-reactid=".0.0.1.2.1"]'
     section :neighborhood, Neighborhood, 'div[data-dojo-attach-point=neighborhoodPanelContainer] div[data-dojo-attach-point=mainContent]'
     section  :basic_info, BasicInfo, 'div[data-dojo-attach-point=publicRecordsPanelContainer] > div.basic-info > div:nth-child(2)'
     section  :tax_info, TaxInfo, 'div[data-dojo-attach-point=publicRecordsPanelContainer] > div.taxable-value > div:nth-child(2) > table:nth-child(1) > tbody:nth-child(1)'
