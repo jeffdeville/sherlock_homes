@@ -37,6 +37,11 @@ module SherlockHomes
     attribute :partial_bathrooms, Integer
     attribute :total_rooms, Integer
 
+    attribute :description, String
+    attribute :style, String
+    attribute :view, String
+    attribute :community, String
+
     attribute :interior_features, Array[String]
     attribute :property_information, Array[String]
     attribute :exterior_features, Array[String]

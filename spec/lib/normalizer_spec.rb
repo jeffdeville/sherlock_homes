@@ -16,6 +16,11 @@ RSpec.describe SherlockHomes::Normalizer do
         full_bathrooms: 2,
         total_rooms: 6,
 
+        description: 'A lovely classic estate home',
+        style: 'Colonial, Traditional',
+        view: 'Hills',
+        community: 'Lower Macungie Twp',
+
         interior_features: [
           'Cooling: Zoned Cooling',
           'Fireplace Location: Family Room, Living Room',
@@ -126,9 +131,21 @@ RSpec.describe SherlockHomes::Normalizer do
     And  { property.sources[:total_rooms].eql? :redfin }
     And  { property.differences[:total_rooms].eql?({redfin: 6, zillow: 5, trulia: 5}) }
 
-    And  { property.interior_features.eql? redfin.interior_features }
-    And  { property.sources[:interior_features].eql? :redfin }
-    And  { property.differences[:interior_features].nil? }
+    And  { property.description.eql? redfin.description }
+    And  { property.sources[:description].eql? :redfin }
+    And  { property.differences[:description].nil? }
+
+    And  { property.style.eql? redfin.style }
+    And  { property.sources[:style].eql? :redfin }
+    And  { property.differences[:style].nil? }
+
+    And  { property.view.eql? redfin.view }
+    And  { property.sources[:view].eql? :redfin }
+    And  { property.differences[:view].nil? }
+
+    And  { property.community.eql? redfin.community }
+    And  { property.sources[:community].eql? :redfin }
+    And  { property.differences[:community].nil? }
 
     And  { property.interior_features.eql? redfin.interior_features }
     And  { property.sources[:interior_features].eql? :redfin }
