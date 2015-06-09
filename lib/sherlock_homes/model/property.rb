@@ -2,6 +2,21 @@ module SherlockHomes
   class Property
     include Virtus.model
 
+    # Nested models
+
+    class Estimate
+      include Virtus.model
+
+      attribute :last_updated, Date
+      attribute :value_change, Integer
+      attribute :value_change_duration, Integer
+      attribute :valuation, Integer
+      attribute :valuation_range_low, Integer
+      attribute :valuation_range_hi, Integer
+      attribute :percentile, Integer
+    end
+
+
     # Keeps track of the source for each stored attribute.
     # Example: {bedrooms: 'redfin'}
     attribute :sources, Hash[Symbol => String]
@@ -41,5 +56,7 @@ module SherlockHomes
     attribute :parking_ncars, Integer
     attribute :parking_info, String
 
+    attribute :estimate, Estimate
   end
+
 end

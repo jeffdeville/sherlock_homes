@@ -65,7 +65,8 @@ RSpec.describe SherlockHomes::Normalizer do
         house_sqft: 2969,
         lot_sqft: 155328,
         bedrooms: 3,
-        total_rooms: 5
+        total_rooms: 5,
+        estimate: SherlockHomes::Property::Estimate.new
       )
     end
 
@@ -92,6 +93,10 @@ RSpec.describe SherlockHomes::Normalizer do
     And  { property.year_built.eql? zillow.year_built }
     And  { property.sources[:year_built].eql? :zillow }
     And  { property.differences[:year_built].nil? }
+
+    And  { property.estimate.eql? zillow.estimate }
+    And  { property.sources[:estimate].eql? :zillow }
+    And  { property.differences[:estimate].nil? }
 
     And  { property.floors.eql? redfin.floors }
     And  { property.sources[:floors].eql? :redfin }
