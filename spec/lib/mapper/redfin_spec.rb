@@ -109,6 +109,9 @@ RSpec.describe SherlockHomes::Mapper::Redfin do
     And  { property.taxable_total.eql? 367500 }
     And  { property.taxes.eql? 7624 }
 
+    And  { property.walk_score.eql? 2 }
+    And  { property.neighborhood_stats_chart.eql? raw_property.neighborhood.stats_chart['src'] }
+
     And  { property.parking_ncars.eql? 2 }
     And  { property.parking_info.eql? 'Off Street; Garage: Built-In' }
 

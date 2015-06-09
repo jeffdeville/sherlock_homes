@@ -7,6 +7,7 @@ module SherlockHomes
       mapper.map_property_details
       mapper.map_basic_info
       mapper.map_tax_info
+      mapper.map_neighborhood_info
       # TODO invoke methods to map other groups of data
       mapper.property
     end
@@ -56,8 +57,8 @@ module SherlockHomes
     end
 
     def map_neighborhood_info
-      property.walk_score = neighborhood.walk_score.text
-      property.neighborhood_stats_chart = neighborhood.stats_chart['src']
+      property.walk_score = raw_property.neighborhood.walk_score.text
+      property.neighborhood_stats_chart = raw_property.neighborhood.stats_chart['src']
     end
 
 
