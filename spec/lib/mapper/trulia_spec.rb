@@ -8,7 +8,7 @@ RSpec.describe SherlockHomes::Mapper::Trulia do
 
     Given(:raw_property) do
       double(
-        public_records: {
+        features: {
           built_in: '1948',
           stories: '3 story with basement',
           sqft: '2,563',

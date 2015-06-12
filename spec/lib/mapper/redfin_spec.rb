@@ -8,6 +8,12 @@ RSpec.describe SherlockHomes::Mapper::Redfin do
 
     Given(:raw_property) do
       double(
+        summary_info: double(
+          description: double(text: 'A lovely classic estate home'),
+          style: double(text: 'Colonial, Traditional'),
+          view: double(text: 'Hills'),
+          community: double(text: 'Lower Macungie Twp')
+        ),
         basic_info: double(
           floors: double(text: '2'),
           year_built: double(text: '1948')
@@ -25,6 +31,13 @@ RSpec.describe SherlockHomes::Mapper::Redfin do
             '# of Rooms (Total): 14',
             'Dining Room',
             'Daylight, Partially Finished'
+          ],
+          parking_information: [
+            '# of Cars: 2',
+            'Parking: Off Street'
+          ],
+          garage: [
+            'Built-In'
           ],
           interior_features: [
             'Cooling: Zoned Cooling',
@@ -63,7 +76,17 @@ RSpec.describe SherlockHomes::Mapper::Redfin do
             'Lower Macungie',
             'Zoning Code: S'
           ]
-        }
+        },
+        tax_info: double(
+          land: double(text: '$102,400'),
+          additions: double(text: '$265,100'),
+          total: double(text: '$367,500'),
+          taxes: double(text: '$7,624')
+        ),
+        neighborhood: double(
+          walk_score: double(text: '2'),
+          stats_chart: {'src' => '2/6989/MEDIAN_HOUSE_SQ_FT_BY_TIME.png'}
+        )
       )
     end
 
@@ -78,6 +101,12 @@ RSpec.describe SherlockHomes::Mapper::Redfin do
     And  { property.full_bathrooms.eql? 2 }
     And  { property.partial_bathrooms.eql? 1 }
     And  { property.total_rooms.eql? 14 }
+
+    And  { property.description.eql? raw_property.summary_info.description.text }
+    And  { property.style.eql? raw_property.summary_info.style.text }
+    And  { property.view.eql? raw_property.summary_info.view.text }
+    And  { property.community.eql? raw_property.summary_info.community.text }
+
     And  { property.interior_features.eql? raw_property.property_details[:interior_features] }
     And  { property.property_information.eql? raw_property.property_details[:property_information] }
     And  { property.exterior_features.eql? raw_property.property_details[:exterior_features] }
@@ -85,6 +114,17 @@ RSpec.describe SherlockHomes::Mapper::Redfin do
     And  { property.school_information.eql? raw_property.property_details[:school_information] }
     And  { property.utility_information.eql? raw_property.property_details[:utility_information] }
     And  { property.location_information.eql? raw_property.property_details[:location_information] }
+
+    And  { property.taxable_land.eql? 102400 }
+    And  { property.taxable_additions.eql? 265100 }
+    And  { property.taxable_total.eql? 367500 }
+    And  { property.taxes.eql? 7624 }
+
+    And  { property.walk_score.eql? 2 }
+    And  { property.neighborhood_stats_chart.eql? raw_property.neighborhood.stats_chart['src'] }
+
+    And  { property.parking_ncars.eql? 2 }
+    And  { property.parking_info.eql? 'Off Street; Garage: Built-In' }
 
   end
 end

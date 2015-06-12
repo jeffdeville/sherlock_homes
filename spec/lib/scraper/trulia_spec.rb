@@ -11,24 +11,23 @@ RSpec.describe SherlockHomes::Scraper::Trulia, skip_ci: true do
   And  { subject.image['src'].include?('2490-Riverbend-Rd-Allentown-PA-18103.jpg') }
 
   # Public Records
-  And  { subject.public_records.is_a? Hash }
-  And  { subject.public_records[:bathroom].eql? '1 Partial' }
-  And  { subject.public_records[:built_in].eql? '1875' }
-  And  { subject.public_records[:heating].eql? 'Central' }
-  And  { subject.public_records[:exterior_walls].eql? 'Brick' }
-  And  { subject.public_records[:basement].eql? 'Full Basement' }
-  And  { subject.public_records[:bedrooms].eql? '3' }
-  And  { subject.public_records[:sqft].eql? '2,563' }
-  And  { subject.public_records[:stories].eql? '3 story with basement' }
-  And  { subject.public_records[:parking].eql? 'Detached Garage' }
-  And  { subject.public_records[:rooms].eql? '8' }
-  And  { subject.public_records[:fireplace].eql? '' }
-  And  { subject.public_records[:bathrooms].eql? '2' }
-  And  { subject.public_records[:lot_size].eql? '0.9 acres' }
-  And  { subject.public_records[:ac].eql? 'Central' }
-  And  { subject.public_records[:parking_spaces].eql? '2' }
-  And  { subject.public_records[:unit].eql? '1' }
-  And  { subject.public_records[:county].eql? 'Lehigh' }
+  And  { subject.features.is_a? Hash }
+  And  { subject.features[:bathroom].eql? '1 Partial' }
+  And  { subject.features[:built_in].eql? '1875' }
+  And  { subject.features[:heating].eql? 'Central' }
+  And  { subject.features[:exterior_walls].eql? 'Brick' }
+  And  { subject.features[:basement].eql? 'Full Basement' }
+  And  { subject.features[:bedrooms].eql? '3' }
+  And  { subject.features[:sqft].eql? '2,563' }
+  And  { subject.features[:stories].eql? '3 story with basement' }
+  And  { subject.features[:parking].eql? 'Detached Garage' }
+  And  { subject.features[:rooms].eql? '8' }
+  And  { subject.features[:bathrooms].eql? '2' }
+  And  { subject.features[:lot_size].eql? '0.9 acres' }
+  And  { subject.features[:a_c].eql? 'Central' }
+  And  { subject.features[:parking_spaces].eql? '2' }
+  And  { subject.features[:unit].eql? '1' }
+  And  { subject.features[:county].eql? 'Lehigh' }
 
   # Taxes and Assessment
   And  { subject.taxes_assessments.is_a? Array }

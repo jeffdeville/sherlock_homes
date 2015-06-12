@@ -11,8 +11,14 @@ RSpec.describe SherlockHomes::Scraper::Redfin, skip_ci: true do
     describe 'main info' do
       Then { subject.title.eql?('2354 S Cedar Crest Blvd, Lower Macungie Twp, PA 18103 | MLS# 486144 | Redfin') }
 
-      # Description
-      And { expect(subject.description.text).to_not be_nil }
+      # Summary Info
+      And { expect(subject.summary_info.description.text).to include('A lovely classic estate home') }
+      And { expect(subject.summary_info.style.text).to be_eql('Colonial, Traditional') }
+      And { expect(subject.summary_info.view.text).to be_eql('Hills') }
+      And { expect(subject.summary_info.county.text).to be_eql('Lehigh') }
+      And { expect(subject.summary_info.property_type.text).to be_eql('Residential') }
+      And { expect(subject.summary_info.community.text).to be_eql('Lower Macungie Twp') }
+      And { expect(subject.summary_info.mls.text).to be_eql('486144') }
 
       # Basic Info
       And  { expect(subject.basic_info.bed.text).to be_eql('4') }

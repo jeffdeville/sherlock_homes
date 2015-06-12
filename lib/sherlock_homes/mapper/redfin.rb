@@ -3,9 +3,12 @@ module SherlockHomes
 
     def self.map(raw_property)
       mapper = new(raw_property)
-      mapper.map_property_details
       mapper.extract_from_property_details
+      mapper.map_property_details
       mapper.map_basic_info
+      mapper.map_tax_info
+      mapper.map_summary_info
+      mapper.map_neighborhood_info
       # TODO invoke methods to map other groups of data
       mapper.property
     end
@@ -33,6 +36,10 @@ module SherlockHomes
       property.school_information = raw_property.property_details[:school_information]
       property.utility_information = raw_property.property_details[:utility_information]
       property.location_information = raw_property.property_details[:location_information]
+
+      garage = raw_property.property_details[:garage]
+      property.parking_info += "; Garage: #{garage.join(', ')}" if garage
+
       #TODO continue with other mappings
     end
 
@@ -42,6 +49,25 @@ module SherlockHomes
       #TODO continue with other mappings
     end
 
+    def map_tax_info
+      digits_to_i = lambda { |s| s.gsub(/[^0-9]/, '').to_i }
+      property.taxable_land = digits_to_i.call(raw_property.tax_info.land.text)
+      property.taxable_additions = digits_to_i.call(raw_property.tax_info.additions.text)
+      property.taxable_total = digits_to_i.call(raw_property.tax_info.total.text)
+      property.taxes = digits_to_i.call(raw_property.tax_info.taxes.text)
+    end
+
+    def map_neighborhood_info
+      property.walk_score = raw_property.neighborhood.walk_score.text
+      property.neighborhood_stats_chart = raw_property.neighborhood.stats_chart['src']
+    end
+
+    def map_summary_info
+      property.description = raw_property.summary_info.description.text
+      property.style = raw_property.summary_info.style.text
+      property.view = raw_property.summary_info.view.text
+      property.community = raw_property.summary_info.community.text
+    end
 
     private
 
@@ -56,6 +82,10 @@ module SherlockHomes
         ],
         room_information: [
           { attr: :total_rooms, regexp: /# of Rooms \(Total\):(.*)/ }
+        ],
+        parking_information: [
+          { attr: :parking_ncars, regexp: /# of Cars:(.*)/ },
+          { attr: :parking_info, regexp: /Parking:(.*)/ }
         ],
         lot_information: [
           { attr: :lot_sqft, regexp: /Lot Sq. Ft.:([^,]+),?([^,]+),?([^,]*)/ }

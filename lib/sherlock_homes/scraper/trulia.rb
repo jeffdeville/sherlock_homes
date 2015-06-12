@@ -53,10 +53,10 @@ module SherlockHomes
 
     sections :taxes_assessments, TaxesAssessments, 'body > section > div:nth-child(1) > div > div:nth-child(5) > div > div.mtl > table > tbody > tr'
 
-    def public_records
-      @public_records ||= Hash.new.tap do |result|
+    def features
+      @features ||= Hash.new.tap do |result|
         all('div.mtl ul.listBulleted > li').each do |pr|
-          result.merge! parse(pr.text) {|key, oldval, newval| [oldval, newval].flatten}
+          result.merge!(parse(pr.text)) {|key, oldval, newval| [oldval, newval].flatten}
         end
       end
     end
@@ -64,13 +64,13 @@ module SherlockHomes
     private
 
     def parse(data)
-      key = 'unknown'
+      key = nil
       value = nil
       sep = ':'
 
       patterns = [
         'bathrooms', 'bathroom', 'bedrooms', 'bedroom', 'rooms', 'room',
-        'built in', 'sqft', 'fireplace', 'units', 'unit'
+        'built in', 'sqft', 'units', 'unit'
       ]
 
       if data.include? sep
@@ -86,10 +86,11 @@ module SherlockHomes
             break
           end
         end
+        rand_number = ('0'..'9').to_a.shuffle[0,5].join
+        key ||= "unknown_#{rand_number}"
         value ||= data
       end
-      key.gsub!(/[^\w]/, '_')
-      { key.titleize.delete(' ').underscore.to_sym => value }
+      { key.gsub(/[^\w]/, '_').to_sym => value }
     end
 
   end
