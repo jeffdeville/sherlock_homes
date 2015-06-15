@@ -11,6 +11,7 @@ require 'sherlock_homes/rubillow'
 require 'sherlock_homes/version'
 
 module SherlockHomes
+  autoload 'Downloader',    'sherlock_homes/downloader'
   autoload 'Driver',        'sherlock_homes/driver'
   autoload 'Locator',       'sherlock_homes/locator'
   autoload 'Mapper',        'sherlock_homes/mapper'
