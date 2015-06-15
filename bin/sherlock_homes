@@ -3,4 +3,11 @@
 require 'bundler/setup'
 require 'sherlock_homes'
 
+SherlockHomes.configure do |config|
+  config.driver = :poltergeist
+  config.wait_time = 60
+  config.timeout = 60
+  config.debug = false
+end
+SherlockHomes::Driver.load!
 SherlockHomes::CLI.run(ARGV.first)
