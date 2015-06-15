@@ -15,7 +15,8 @@ module SherlockHomes
                   :timeout,
                   :debug,
                   :proxy_host,
-                  :proxy_port
+                  :proxy_port,
+                  :store_dir
 
     def initialize
       @debug      = false
@@ -25,6 +26,7 @@ module SherlockHomes
       @wait_time  = 60
       @proxy_host = nil
       @proxy_port = nil
+      @store_dir  = ENV['STORE_DIR'] || Dir.pwd
     end
 
     def debug?
