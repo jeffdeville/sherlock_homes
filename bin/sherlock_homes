@@ -3,6 +3,10 @@
 require 'bundler/setup'
 require 'sherlock_homes'
 
+if ENV['ZILLOW_KEY'].nil?
+  fail ArgumentError.new 'missing zillow configuration'
+end
+
 SherlockHomes.configure do |config|
   config.driver = :poltergeist
   config.wait_time = 60
