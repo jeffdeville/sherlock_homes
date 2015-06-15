@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'sherlock_homes'
+
+SherlockHomes::CLI.run(ARGV.first)
