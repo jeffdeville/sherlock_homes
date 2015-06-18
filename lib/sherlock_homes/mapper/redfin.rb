@@ -59,7 +59,7 @@ module SherlockHomes
 
     def map_neighborhood_info
       property.walk_score = raw_property.neighborhood.walk_score.text
-      property.neighborhood_stats_chart = raw_property.neighborhood.stats_chart['src']
+      property.neighborhood_stats_chart = raw_property.neighborhood.stats_chart_url
     end
 
     def map_summary_info
