@@ -85,7 +85,7 @@ RSpec.describe SherlockHomes::Mapper::Redfin do
         ),
         neighborhood: double(
           walk_score: double(text: '2'),
-          stats_chart: {'src' => '2/6989/MEDIAN_HOUSE_SQ_FT_BY_TIME.png'}
+          stats_chart_url: 'https://www.redfin.com/stingray/do/region-chart/2015_06_17/2/6989/MEDIAN_HOUSE_SQ_FT_BY_TIME.png'
         )
       )
     end
@@ -121,7 +121,7 @@ RSpec.describe SherlockHomes::Mapper::Redfin do
     And  { property.taxes.eql? 7624 }
 
     And  { property.walk_score.eql? 2 }
-    And  { property.neighborhood_stats_chart.eql? raw_property.neighborhood.stats_chart['src'] }
+    And  { property.neighborhood_stats_chart.eql? raw_property.neighborhood.stats_chart_url }
 
     And  { property.parking_ncars.eql? 2 }
     And  { property.parking_info.eql? 'Off Street; Garage: Built-In' }
