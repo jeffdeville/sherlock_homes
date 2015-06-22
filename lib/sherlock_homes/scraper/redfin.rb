@@ -100,7 +100,7 @@ module SherlockHomes
     section  :basic_info, BasicInfo, 'div[data-dojo-attach-point=publicRecordsPanelContainer] > div.basic-info > div:nth-child(2)'
     section  :tax_info, TaxInfo, 'div[data-dojo-attach-point=publicRecordsPanelContainer] > div.taxable-value > div:nth-child(2) > table:nth-child(1) > tbody:nth-child(1)'
     sections :history, History, 'div[data-dojo-attach-point=historyTableNode] > table > tbody > tr'
-    sections :details, Details, 'div[data-dojo-attach-point=propertyDetailsPanelContainer] > div[data-dojo-attach-point=contentNode] > div:first-child > div'
+    sections :details, Details, 'div[class=amenities-container] > div'
 
     sections :schools, Schools, 'div[data-dojo-attach-point=schoolsContent] tr[data-dojo-attach-point=fullSchoolRow]'
 

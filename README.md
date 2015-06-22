@@ -27,7 +27,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    $ ZILLOW_KEY=your-key sherlock_homes '2354 S Cedar Crest Blvd, Allentown, PA'
 
 ## Development
 
